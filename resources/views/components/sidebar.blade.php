@@ -11,7 +11,11 @@
                 <label class="px-3 text-xs text-gray-100 uppercase ">analytics</label>
 
                 <a class="flex items-center px-3 py-2 text-yellow-400 transition-colors duration-300 transform
+<<<<<<< HEAD
                         rounded-lg  hover:bg-yellow-300 hover:text-gray-700 sidebar-link" href="/admin/dashboard">
+=======
+                        rounded-lg  hover:bg-yellow-300 hover:text-gray-700" href="/admin/dashboard">
+>>>>>>> 24113f3 (Add new features ui Admin)
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                          stroke="currentColor" class="w-5 h-5">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -27,7 +31,11 @@
                 <label class="px-3 text-xs text-gray-100 uppercase">Management</label>
 
                 <a class="flex items-center px-3 py-2 text-yellow-400 transition-colors duration-300 transform
+<<<<<<< HEAD
                         rounded-lg  hover:bg-yellow-300 hover:text-gray-700 sidebar-link" href="/admin/users">
+=======
+                        rounded-lg  hover:bg-yellow-300 hover:text-gray-700" href="/admin/users">
+>>>>>>> 24113f3 (Add new features ui Admin)
                     <svg class="w-6 h-6 " aria-hidden="true"
                          xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                         <path fill-rule="evenodd"
@@ -38,12 +46,15 @@
 
                     <span class="mx-2 text-sm font-medium">Users</span>
                 </a>
+<<<<<<< HEAD
                 <a class="flex  items-center px-3 py-2 text-yellow-400 transition-colors duration-300 transform
                         rounded-lg  hover:bg-yellow-300 hover:text-gray-700 sidebar-link" href="/admin/claims">
                     <i class="fa-solid fa-book text-[20px]"></i>
 
                     <span class="mx-2 text-sm font-medium">Claims</span>
                 </a>
+=======
+>>>>>>> 24113f3 (Add new features ui Admin)
 
 
             </div>
