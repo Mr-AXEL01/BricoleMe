@@ -3,7 +3,7 @@
 @section('content')
 
     <section class="bg-gray-100 flex  overflow-hidden">
-        <aside>
+        <aside >
             @include('components.sidebar')
         </aside>
         <main class="flex-grow min-h-screen w-full  ml-[260px]">
