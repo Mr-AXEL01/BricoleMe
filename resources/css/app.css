@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
+
+/* les button de role dans register */
+
+.selected {
+    background-color: blue;
+    color: white;
+}
+
+
+
