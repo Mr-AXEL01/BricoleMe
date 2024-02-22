@@ -35,3 +35,7 @@ Route::get('auth/google', [GoogleSocialiteController::class, 'redirectToGoogle']
 Route::get('callback/google', [GoogleSocialiteController::class, 'handleCallback']);
 
 require __DIR__.'/auth.php';
+
+Route::get('/info' , function () {
+    return view('artisan.artisanInfo');
+});
