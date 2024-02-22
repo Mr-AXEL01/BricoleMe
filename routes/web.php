@@ -35,3 +35,12 @@ Route::group([] , function () {
     Route::get('/admin/claims' , [AdminController::class , 'claims']);
 });
 require __DIR__.'/auth.php';
+
+Route::get('/Adashboard' , function () {
+    return view('artisan.dashboard');
+});
+
+Route::get('/ArtisanInfo' , function () {
+    return view('artisan.info');
+});
+
