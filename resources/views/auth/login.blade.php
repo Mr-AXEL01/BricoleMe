@@ -24,7 +24,7 @@
 <section class="flex flex-col md:flex-row h-screen items-center ">
 
 <div class="hidden lg:block w-full md:w-1/2 xl:w-3/5 h-screen">
-  <img src="img/home-services.jpg" alt="" class="w-full h-full object-cover">
+  <img src="https://img.freepik.com/photos-gratuite/partie-ouvrier-masculin_329181-3734.jpg?t=st=1708548373~exp=1708551973~hmac=af1f7ff7b89e361849f307fd2079e0da1f5e0dde4a19a5d0b83fc5c57dffdd01&w=996" alt="" class="w-full h-full object-cover">
 </div>
 
 <div class="bg-white w-full md:max-w-md lg:max-w-full md:mx-auto md:mx-0 md:w-1/2 xl:w-1/3 h-screen px-6 lg:px-16 xl:px-12

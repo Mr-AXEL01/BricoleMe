@@ -29,3 +29,7 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+Route::get('/info' , function () {
+    return view('artisan.artisanInfo');
+});
