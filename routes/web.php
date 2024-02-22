@@ -30,6 +30,10 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/info' , function () {
-    return view('artisan.artisanInfo');
+Route::get('/Adashboard' , function () {
+    return view('artisan.dashboard');
+});
+
+Route::get('/ArtisanInfo' , function () {
+    return view('artisan.info');
 });
