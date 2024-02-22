@@ -38,11 +38,3 @@ Route::group([] , function () {
 >>>>>>> 24113f3 (Add new features ui Admin)
 });
 require __DIR__.'/auth.php';
-
-Route::get('/Adashboard' , function () {
-    return view('artisan.dashboard');
-});
-
-Route::get('/ArtisanInfo' , function () {
-    return view('artisan.info');
-});
