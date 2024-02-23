@@ -32,7 +32,7 @@ public function generate(Request $request)
 
     $pdf = Pdf::loadView('invoice', $data);
 
-    # Option 1) displaythe PDF in the browser
+    # Option 1) display the PDF in the browser
     return $pdf->stream();
 
     # Option 2) Download the PDF
