@@ -16,23 +16,36 @@ function closeForm() {
 function showForm() {
     formDelete.classList.remove("opacity-0", "invisible");
 }
+// ============ Active link In side bar ==========
+const links = document.querySelectorAll('.sidebar-link');
 
-document.querySelectorAll("a.confirmation-link").forEach((link) => {
-    link.addEventListener("click", confirmation);
-});
+links.forEach((link) => {
+    link.addEventListener('click' , () => {
+        links.forEach(el => {
+            el.classList.remove('active')
+        })
+    })
+    if (link.href === window.location.href) {
+        link.classList.add('active');
+    }
 
-function confirmation(e) {
-    e.preventDefault();
-    let url = e.currentTarget.getAttribute("href");
-    swal({
-        title: "Are you sure to this !",
-        text: "you won't be able to revert this delete!",
-        icon: "warning",
-        buttons: true,
-        dangerMode: true,
-    }).then((willCancel) => {
-        if (willCancel) {
-            window.location.href = url;
-        }
-    });
-}
+})
+// document.querySelectorAll("a.confirmation-link").forEach((link) => {
+//     link.addEventListener("click", confirmation);
+// });
+
+// function confirmation(e) {
+//     e.preventDefault();
+//     let url = e.currentTarget.getAttribute("href");
+//     swal({
+//         title: "Are you sure to this !",
+//         text: "you won't be able to revert this delete!",
+//         icon: "warning",
+//         buttons: true,
+//         dangerMode: true,
+//     }).then((willCancel) => {
+//         if (willCancel) {
+//             window.location.href = url;
+//         }
+//     });
+// }
