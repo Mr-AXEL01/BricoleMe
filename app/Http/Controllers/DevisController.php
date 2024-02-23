@@ -28,6 +28,15 @@ public function generate(Request $request)
         'artisan_email' => $artisan_email,
         'services' => $services,
     ];
+
+    $pdf = Pdf::loadView('invoice', $data);
+
+    # Option 1) displaythe PDF in the browser
+    return $pdf->stream();
+
+    # Option 2) Download the PDF
+    // return $pdf->download('invoice.pdf');
+
 }
 
 }
