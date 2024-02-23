@@ -24,7 +24,7 @@
 <section class="flex flex-col md:flex-row h-screen items-center ">
 
 <div class="hidden lg:block w-full md:w-1/2 xl:w-3/5 h-screen">
-  <img src="img/home-services.jpg" alt="" class="w-full h-full object-cover">
+  <img src="https://img.freepik.com/photos-gratuite/partie-ouvrier-masculin_329181-3734.jpg?t=st=1708548373~exp=1708551973~hmac=af1f7ff7b89e361849f307fd2079e0da1f5e0dde4a19a5d0b83fc5c57dffdd01&w=996" alt="" class="w-full h-full object-cover">
 </div>
 
 <div class="bg-white w-full md:max-w-md lg:max-w-full md:mx-auto md:mx-0 md:w-1/2 xl:w-1/3 h-screen px-6 lg:px-16 xl:px-12
@@ -61,7 +61,7 @@
       <!-- ______name________ -->
       <div class="mt-4">  
         <x-input-label for="email" :value="__('Email')" />
-        <x-text-input id="email" class="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+        <x-text-input id="email" class="text-gray-700 focus:outline-none focus:shadow-outline border border-gray-500 rounded py-2 px-4 block w-full appearance-none" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
         <x-input-error :messages="$errors->get('email')" class="mt-2" />
       
     </div>
@@ -70,7 +70,7 @@
         <div>
         <x-input-label for="password" :value="__('Password')" />
 
-        <x-text-input class="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none" id="password"
+        <x-text-input class="text-gray-700 focus:outline-none focus:shadow-outline border border-gray-500 rounded py-2 px-4 block w-full appearance-none" id="password"
                         type="password"
                         name="password"
                         required autocomplete="current-password" />

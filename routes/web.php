@@ -35,3 +35,17 @@ Route::group([] , function () {
     Route::get('/admin/claims' , [AdminController::class , 'claims']);
 });
 require __DIR__.'/auth.php';
+
+
+
+// artisan resources
+Route::group([] , function () {
+Route::get('/artisan/dashboard' , function () {
+    return view('artisan.dashboard');
+});
+
+Route::get('/artisan/info' , function () {
+    return view('artisan.info');
+});
+});
+
