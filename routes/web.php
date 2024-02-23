@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\Auth\GoogleSocialiteController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,10 +28,10 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
-//Google OAuth
-
-Route::get('auth/google', [GoogleSocialiteController::class, 'redirectToGoogle']);
-Route::get('callback/google', [GoogleSocialiteController::class, 'handleCallback']);
-
+// Admin Ressources
+Route::group([] , function () {
+    Route::get('/admin/dashboard' , [AdminController::class , 'dashboard']);
+    Route::get('/admin/users' , [AdminController::class , 'users']);
+    Route::get('/admin/claims' , [AdminController::class , 'claims']);
+});
 require __DIR__.'/auth.php';
