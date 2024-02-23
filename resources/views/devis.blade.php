@@ -25,6 +25,26 @@
         <p><strong>Artisan Phone:</strong> {{$artisan_phone}}</p>
         <p><strong>Artisan Email:</strong> {{$artisan_email}}</p>
     </div>
+    <div class="section">
+        <h2 class="subtitle">Services</h2>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Service</th>
+                <th>Price</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($services as $service)
+                <tr>
+                    <td>{{ $service['name'] }}</td>
+                    <td>{{ $service['price'] }}</td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+    </div>
+
 
 </div>
 </body>
