@@ -36,11 +36,16 @@ Route::group([] , function () {
 });
 require __DIR__.'/auth.php';
 
-Route::get('/Artisandashboard' , function () {
+
+
+// artisan resources
+Route::group([] , function () {
+Route::get('/artisan/dashboard' , function () {
     return view('artisan.dashboard');
 });
 
-Route::get('/ArtisanInfo' , function () {
+Route::get('/artisan/info' , function () {
     return view('artisan.info');
+});
 });
 
