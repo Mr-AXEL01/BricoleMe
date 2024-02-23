@@ -9,6 +9,12 @@
 </head>
 <body>
 <div class="container">
+    <div class="header">
+        <h1 class="title">Devis</h1>
+        <p class="subtitle">BrecouleMe</p>
+        <p>Phone: +212 565345589</p>
+        <p>Email: BrecoleMe@services.com</p>
+    </div>
 
 </div>
 </body>
