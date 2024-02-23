@@ -39,7 +39,7 @@ Route::group([] , function () {
 });
 require __DIR__.'/auth.php';
 
-Route::get('/Adashboard' , function () {
+Route::get('/Artisandashboard' , function () {
     return view('artisan.dashboard');
 });
 
