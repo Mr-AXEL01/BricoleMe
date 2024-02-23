@@ -44,8 +44,10 @@
             </tbody>
         </table>
     </div>
-
-
+    <div class="footer">
+        <p>Authorized Signature: ________________________</p>
+        <p>Date: ________________________</p>
+    </div>
 </div>
 </body>
 </html>
