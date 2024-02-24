@@ -216,8 +216,27 @@
         </div>
     </section>
     <!-- steps-end -->
+    <!-- Services-start -->
+    <section class="steps mt-[80px] xl:mt-[200px] relative z-20">
+        <div class="container mx-auto">
+            <h1 class="uppercase text-2xl my-10 font-semibold">services popular</h1>
+            <div class="grid grid-cols-1 gap-5 xl:grid-cols-5">
+                <div class="w-full bg-red-500 p-5 h-[300px]">
+                    hello
+                </div><div class="w-full bg-red-500 p-5 h-[300px]">
+                    hello
+                </div><div class="w-full bg-red-500 p-5 h-[300px]">
+                    hello
+                </div><div class="w-full bg-red-500 p-5 h-[300px]">
+                    hello
+                </div><div class="w-full bg-red-500 p-5 h-[300px]">
+                    hello
+                </div>
 
-
+            </div>
+        </div>
+    </section>
+    <!-- Services-end -->
     <!-- about-start -->
 
     <section class="about mt-[80px] xl:mt-[200px] relative z-20 overflow-hidden">
