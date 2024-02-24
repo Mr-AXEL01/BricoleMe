@@ -2,11 +2,12 @@
 
 @section('content')
 
-    <section class="bg-gray-100 flex  overflow-hidden">
+    <section class="bg-gray-100 flex relative  overflow-hidden">
+    @include('components.nav-admin')
         <aside>
             @include('components.sidebar')
         </aside>
-        <main class="flex-grow min-h-screen w-full  ml-[260px]">
+        <main class="flex-grow min-h-screen w-full mt-20  ml-[260px]">
             <div class="bg-white p-5 m-5 rounded-lg">
                 <div class="uppercase text-yellow-400 font-bold text-2xl">
                     Claims
