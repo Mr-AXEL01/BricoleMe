@@ -32,10 +32,9 @@ Route::middleware('auth')->group(function () {
 Route::group([] , function () {
     Route::get('/admin/dashboard' , [AdminController::class , 'dashboard']);
     Route::get('/admin/users' , [AdminController::class , 'users']);
-<<<<<<< HEAD
+
     Route::get('/admin/claims' , [AdminController::class , 'claims']);
-=======
->>>>>>> 24113f3 (Add new features ui Admin)
+
 });
 require __DIR__.'/auth.php';
 
