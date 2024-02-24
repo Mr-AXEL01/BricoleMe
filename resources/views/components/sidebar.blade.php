@@ -2,7 +2,7 @@
         rtl:border-r-0
         rtl:border-l  ">
     <a href="#">
-{{--        <img class="w-auto h-10" src="{{ asset('assets/images/logo.png') }}" alt="">--}}
+        <img class="w-auto h-10" src="{{ asset('assets/images/logo.png') }}" alt="">--}}
     </a>
 
     <div class="flex flex-col justify-between flex-1 mt-6">
@@ -11,15 +11,9 @@
                 <label class="px-3 text-xs text-gray-100 uppercase ">analytics</label>
 
                 <a class="flex items-center px-3 py-2 text-yellow-400 transition-colors duration-300 transform
-<<<<<<< HEAD
-<<<<<<< HEAD
+
                         rounded-lg  hover:bg-yellow-300 hover:text-gray-700 sidebar-link" href="/admin/dashboard">
-=======
-                        rounded-lg  hover:bg-yellow-300 hover:text-gray-700" href="/admin/dashboard">
->>>>>>> 24113f3 (Add new features ui Admin)
-=======
-                        rounded-lg  hover:bg-yellow-300 hover:text-gray-700 sidebar-link" href="/admin/dashboard">
->>>>>>> origin/sanaa
+
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                          stroke="currentColor" class="w-5 h-5">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -35,15 +29,9 @@
                 <label class="px-3 text-xs text-gray-100 uppercase">Management</label>
 
                 <a class="flex items-center px-3 py-2 text-yellow-400 transition-colors duration-300 transform
-<<<<<<< HEAD
-<<<<<<< HEAD
+
                         rounded-lg  hover:bg-yellow-300 hover:text-gray-700 sidebar-link" href="/admin/users">
-=======
-                        rounded-lg  hover:bg-yellow-300 hover:text-gray-700" href="/admin/users">
->>>>>>> 24113f3 (Add new features ui Admin)
-=======
-                        rounded-lg  hover:bg-yellow-300 hover:text-gray-700 sidebar-link" href="/admin/users">
->>>>>>> origin/sanaa
+
                     <svg class="w-6 h-6 " aria-hidden="true"
                          xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                         <path fill-rule="evenodd"
@@ -54,21 +42,14 @@
 
                     <span class="mx-2 text-sm font-medium">Users</span>
                 </a>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> origin/sanaa
+
                 <a class="flex  items-center px-3 py-2 text-yellow-400 transition-colors duration-300 transform
                         rounded-lg  hover:bg-yellow-300 hover:text-gray-700 sidebar-link" href="/admin/claims">
                     <i class="fa-solid fa-book text-[20px]"></i>
 
                     <span class="mx-2 text-sm font-medium">Claims</span>
                 </a>
-<<<<<<< HEAD
-=======
->>>>>>> 24113f3 (Add new features ui Admin)
-=======
->>>>>>> origin/sanaa
+
 
 
             </div>
