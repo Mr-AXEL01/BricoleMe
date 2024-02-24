@@ -18,9 +18,15 @@ class AdminController extends Controller
         return view('admin.users');
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
     public function claims() {
         return view('admin.claims');
     }
 =======
 >>>>>>> 24113f3 (Add new features ui Admin)
+=======
+    public function claims() {
+        return view('admin.claims');
+    }
+>>>>>>> origin/sanaa
 }
