@@ -41,17 +41,17 @@
                     <div class="flex items-center justify-center space-x-6 my-5  rounded-md">
                         <label class="block">
                             <span class="sr-only">Choose profile photo</span>
-                            <input type="file" onchange="loadFile(event)" class="block w-full text-sm text-slate-500
+                            <input name="picture" type="file" onchange="loadFile(event)" class="block w-full text-sm text-slate-500 
                                 file:mr-4 file:py-2 file:px-4
                                 file:rounded-full file:border-0
                                 file:text-sm file:font-semibold
                                 file:bg-violet-50 file:text-violet-700
                                 hover:file:bg-violet-100
                                 hidden
-                            "/>
+                            " />
                             <img id='preview_img' class="h-20 w-20 object-cover rounded-full shadow-lg cursor-pointer"
-                            src="https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?size=338&ext=jpg&ga=GA1.1.1700460183.1708560000&semt=ais"
-                            alt="Current profile photo" />
+                                src="https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?size=338&ext=jpg&ga=GA1.1.1700460183.1708560000&semt=ais"
+                                alt="Current profile photo" />
                         </label>
                     </div>
 
@@ -68,12 +68,12 @@
                             class="bg-white border-2 border-blue-500 text-blue-500 hover:bg-gray-300 rounded-md py-2 cursor-pointer transition-colors duration-300 ease-in-out px-20">Client</label>
                     </div>
 
-                    
+
 
                     <!-- ______name________ -->
                     <div>
 
-                        <label class="block text-gray-700" for="name">Username</label>
+                        <label class="block text-gray-700" for="name">fullName</label>
                         <input type="text" id="name" name="name" :value="old('name')" required autofocus
                             autocomplete="name"
                             class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none">
@@ -111,20 +111,22 @@
                     </div>
 
                     <div class="flex justify-between">
-                    <!--________number_phone_________  -->
-                    <div class="mt-4">
-                        <label class="block text-gray-700" for="phone">phone number</label>
-                        <input type="text" id="phone" name="phone" :value="old('phone')" required autocomplete="phone"
-                            class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none">
-                        <x-input-error :messages="$errors->get('ville')" class="mt-2" />
-                    </div>
-                    <!--________ville_________  -->
-                    <div class="mt-4">
-                        <label class="block text-gray-700" for="ville">Ville</label>
-                        <input type="text" id="ville" name="ville" :value="old('ville')" required autocomplete="ville"
-                            class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none">
-                        <x-input-error :messages="$errors->get('ville')" class="mt-2" />
-                    </div>
+                        <!--________number_phone_________  -->
+                        <div class="mt-4">
+                            <label class="block text-gray-700" for="phone">phone number</label>
+                            <input type="text" id="phone" name="phone" :value="old('phone')" required
+                                autocomplete="phone"
+                                class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none">
+                            <x-input-error :messages="$errors->get('ville')" class="mt-2" />
+                        </div>
+                        <!--________ville_________  -->
+                        <div class="mt-4">
+                            <label class="block text-gray-700" for="ville">Ville</label>
+                            <input type="text" id="ville" name="ville" :value="old('ville')" required
+                                autocomplete="ville"
+                                class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none">
+                            <x-input-error :messages="$errors->get('ville')" class="mt-2" />
+                        </div>
                     </div>
 
                     <div class="flex items-center justify-center ">
