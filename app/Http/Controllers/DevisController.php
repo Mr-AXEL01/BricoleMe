@@ -30,7 +30,7 @@ public function generate(Request $request)
         'services' => $services,
     ];
 
-    $pdf = Pdf::loadView('invoice', $data);
+    $pdf = Pdf::loadView('devis', $data);
 
     # Option 1) display the PDF in the browser
     return $pdf->stream();
