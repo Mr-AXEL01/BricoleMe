@@ -3,7 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
-
+use App\Http\Controllers\PagesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,9 +14,12 @@ use App\Http\Controllers\AdminController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+// public resources
 Route::get('/', function () {
     return view('welcome');
+});
+Route::group([], function() {
+    Route::get('all-services' , [PagesController::class , 'all_services']);
 });
 
 Route::get('/dashboard', function () {
@@ -51,4 +54,5 @@ Route::get('/artisan/info' , function () {
     return view('artisan.info');
 });
 });
+
 
