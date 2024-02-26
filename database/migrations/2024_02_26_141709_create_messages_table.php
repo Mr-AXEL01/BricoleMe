@@ -13,9 +13,14 @@ return new class extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('sender')->constrained('users');
+            $table->foreignId('receiver')->constrained('users');
+            $table->text('message');
             $table->timestamps();
         });
     }
+
+
 
     /**
      * Reverse the migrations.
