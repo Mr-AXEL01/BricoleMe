@@ -35,11 +35,12 @@ class RegisteredUserController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+           
             'role' => ['required'],
             'phone' => ['required'],
             'ville' => ['required'],
             'picture' => ['required'],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
         $imageName = time() . '.' . $request->picture->extension();
