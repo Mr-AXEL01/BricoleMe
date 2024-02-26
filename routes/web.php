@@ -38,8 +38,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/devis', [DevisController::class, 'generate']);
 
 //    --------------chat----------------
-    Route::get('/chat/{user_id}',[ChatController::class , 'chatForm']);
-    Route::post('/chat/{user_id}',[ChatController::class , 'sendMessage']);
+    Route::get('/chat/{user_id}',[ChatController::class , 'chatForm'])->name('chatForm');
+    Route::post('/chat/{user_id}', [ChatController::class, 'sendMessage'])->name('sendMessage');
 });
 // Admin Ressources
 Route::group([] , function () {
