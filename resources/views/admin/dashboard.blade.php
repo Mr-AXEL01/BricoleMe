@@ -3,6 +3,7 @@
 @section('content')
 
     <section class="bg-gray-100 flex  overflow-hidden">
+        @include('components.nav-admin')
         <aside >
             @include('components.sidebar')
         </aside>
