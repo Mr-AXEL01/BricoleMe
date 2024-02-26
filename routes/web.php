@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ClientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,3 +50,13 @@ Route::get('/artisan/info' , function () {
 });
 });
 
+
+// ==================================client routes================================
+
+Route::group([] , function () {
+    Route::get('/client/reservation' , [ClientController::class , 'reservation']);
+    Route::get('/client/reclamation' , [ClientController::class , 'reclamation']);
+    Route::get('/client/reclamation-forme' , [ClientController::class , 'reclamationForme']);
+    Route::get('/client/review' , [ClientController::class , 'review']);
+  
+});
