@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+
     <title>Laravel</title>
 
     <!-- Fonts -->
@@ -13,7 +14,13 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
           integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
     @vite('resources/css/app.css')
+    <!-- Swiper librairy -->
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
 
     <style>
         .steps__step {
@@ -155,8 +162,8 @@
             <i class="fa-solid fa-house"></i>
             <span> / page / single-service</span>
         </div>
-        <div class="inline-flex items-start flex-wrap gap-6 w-full ">
-            <div class="flex-1 min-w-[480px] p-4">
+        <div class="inline-flex items-start flex-wrap w-full ">
+            <div class="flex-1 min-w-[480px] lg:mx-[120px] p-4">
                 <header>
                     <h2 class="text-4xl font-bold mb-3">title for service</h2>
                     <div class="flex items-center gap-1">
@@ -169,30 +176,111 @@
                     </div>
                 </header>
                 <div class="my-4 flex items-center gap-5">
-                    <img src="{{ asset('img/unnamed.png') }}" alt="" class="w-[150px] h-[150px] border-4 border-yellow-400 rounded-full">
+                    <img src="{{ asset('img/unnamed.png') }}" alt="" class="w-[100px] h-[100px] border-4 border-yellow-400 rounded-full">
                     <div>
                         <h5 class="text-2xl font-semibold">name of artisan </h5>
-                        <div class="flex items-center my-3 text-gray-400"">
-                            <div class="mr-2">
-                                <i class="fa-solid fa-location-dot"></i>
-                                <span class="text-gray-900">Nationalty</span>
-                            </div>
-                            <div>
-                                <i class="fa-solid fa-message"></i>
-                                <span class="text-gray-900">Je parle francais , englais</span>
-                            </div>
+                        <div class="flex items-center my-3 text-gray-400"
+                        >
+                        <div class="mr-2">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span class="text-gray-900">Location</span>
                         </div>
-                        <button class="block border border-gray-300 py-1.5 px-6">
-                            Contact-me
-                        </button>
-
+                        <div>
+                            <i class="fa-solid fa-message"></i>
+                            <span class="text-gray-900">J'ai parle francais , anglaise</span>
+                        </div>
                     </div>
+                    <button class="block border border-gray-300 py-1.5 px-6">
+                        Contact-me
+                    </button>
                 </div>
             </div>
-            <div class="bg-gray-500 w-full  xl:max-w-[30%] p-4">
-                    helloo
+            <!--- slider image -->
+            <div class="swiper  relative">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper">
+                    <!-- Slides -->
+                    <div class="swiper-slide"><img src="{{ asset('img/cleaning.jpg') }}" alt="" class="w-full">
+                    </div><div class="swiper-slide"><img src="{{ asset('img/cleaning.jpg') }}" alt="" class="w-full">
+                    </div><div class="swiper-slide"><img src="{{ asset('img/cleaning.jpg') }}" alt="" class="w-full">
+                    </div><div class="swiper-slide"><img src="{{ asset('img/cleaning.jpg') }}" alt="" class="w-full">
+                    </div>
+
+                    ...
+                </div>
+                <!-- If we need pagination -->
+                <div class="swiper-pagination"></div>
+
+                <!-- If we need navigation buttons -->
+                <button class="next bg-white h-8 w-8 shadow absolute top-[50%] right-0 translate-y-[-50%] rounded-full z-50">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+                <button class="prev bg-white h-8 w-8 shadow absolute top-[50%] left-0 translate-y-[-50%] rounded-full z-50">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+
+
+
+
+                <!-- If we need scrollbar -->
+            </div>
+
+            <div>
+                <h4 class="text-xl my-2 font-semibold">a propos de service</h4>
+                <p class="text-gray-600 max-h-[350px]">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores ducimus fuga natus vitae voluptates. Consequatur
+                    excepturi
+                    modi
+                    nesciunt praesentium
+                    quod
+                    sapiente tempora voluptates.</p>
             </div>
         </div>
+        <div class="bg-[#f1f5f6] w-full  xl:max-w-[30%] p-4">
+            <h1 class="text-2xl font-semibold mb-6">Cart</h1>
+
+            <div class="relative overflow-x-auto">
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                    <thead class="text-xs text-gray-700 uppercase bg-yellow-400">
+                    <tr>
+                        <th scope="col" class="px-3 py-3 ">
+                            Service name
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Artisan name
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Price
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="bg-white text-gray-900">
+
+                        <td class="px-6 py-4">
+                            Plumbing
+                        </td><td class="px-6 py-4">
+                            Abdelhak
+                        </td>
+                        <td class="px-6 py-4  ">
+                            650 dh
+                        </td>
+
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="my-6 inline-flex justify-end gap-2 w-full">
+                <form action="" method="post">
+                    @csrf
+                    <input type="hidden" name="id_service" value="id_service">
+                    <input type="hidden" name="id_artisan" value="id_service">
+                    <input type="hidden" name="id_client" value="id_service">
+                    <button type="submit" class="bg-neutral-800 text-yellow-400 px-8 py-2 ">Reserve</button>
+                </form>
+            </div>
+        </div>
+    </div>
     </div>
 
 </section>
@@ -275,8 +363,25 @@
     </div>
 </footer>
 <!-- footer-end -->
+{{--Swiper js --}}
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 <script>
+    const swiper = new Swiper('.swiper', {
+        // Optional parameters
+        loop: true,
+
+        // If we need pagination
+        pagination: {
+            el: '.swiper-pagination',
+        },
+
+        navigation: {
+            nextEl: '.next',
+            prevEl: '.prev',
+        },
+    });
+
     // =================burger menu==================
     document.addEventListener("DOMContentLoaded", function () {
         const toggleButton = document.getElementById('toggleButton');
