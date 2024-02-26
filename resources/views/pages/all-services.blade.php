@@ -50,7 +50,7 @@
                     </div>
                 </div>
             </div>
-            <div class="grid gap-8 grid-cols-1 lg:grid-cols-4">
+            <div class="grid gap-5 grid-cols-1 lg:grid-cols-4">
                 <div class="w-full   shadow overflow-hidden">
                         <div class="max-h-[200px] overflow-hidden rounded-lg">
                             <img src="{{ asset('img/plumber.jpg') }}" class="h-full max-h-64">
