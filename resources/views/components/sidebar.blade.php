@@ -5,7 +5,7 @@
         <img class="w-auto h-10" src="{{ asset('assets/images/logo.png') }}" alt="">--}}
     </a>
 
-    <div class="flex flex-col justify-between flex-1 mt-6">
+    <div class="flex flex-col justify-between flex-1 mt-14">
         <nav class="-mx-3 space-y-6 ">
             <div class="space-y-3 ">
                 <label class="px-3 text-xs text-gray-100 uppercase ">analytics</label>

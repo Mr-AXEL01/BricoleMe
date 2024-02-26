@@ -2,3 +2,8 @@
     background: #FDE047;
     color: #262626;
 }
+
+#btn_notification.active {
+    background: #FDE047;
+
+}

@@ -30,22 +30,27 @@ links.forEach((link) => {
     }
 
 })
-// document.querySelectorAll("a.confirmation-link").forEach((link) => {
-//     link.addEventListener("click", confirmation);
-// });
 
-// function confirmation(e) {
-//     e.preventDefault();
-//     let url = e.currentTarget.getAttribute("href");
-//     swal({
-//         title: "Are you sure to this !",
-//         text: "you won't be able to revert this delete!",
-//         icon: "warning",
-//         buttons: true,
-//         dangerMode: true,
-//     }).then((willCancel) => {
-//         if (willCancel) {
-//             window.location.href = url;
-//         }
-//     });
-// }
+// ====== Notification ======
+
+const btnNotification = document.getElementById('btn_notification');
+const wrapper_notify = document.getElementById('wrapper_notify');
+
+btnNotification.addEventListener('click' , () => {
+    if (!btnNotification.classList.contains('active')) {
+        btnNotification.classList.add('active')
+        wrapper_notify.classList.remove('opacity-0', 'invisible' , 'translate-y-[40px]')
+    }else {
+        btnNotification.classList.remove('active')
+        wrapper_notify.classList.add('opacity-0', 'invisible' , 'translate-y-[40px]')
+    }
+
+})
+
+// =========== Hidden Notification container when outside wrapper ====== !
+window.addEventListener('click' , (e) => {
+    if (!wrapper_notify.contains(e.target) && !btnNotification.contains(e.target)){
+        btnNotification.classList.remove('active')
+        wrapper_notify.classList.add('opacity-0', 'invisible' , 'translate-y-[40px]')
+    }
+})
