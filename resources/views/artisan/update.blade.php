@@ -19,10 +19,10 @@
   <link rel="stylesheet" href="css/artisan.css">
 </head>
 
-<body style="background-image: url(img/157535637.jpg); background-repeat:no-repeat; background-size: cover;  height: 100vh;">
+<body  class=" bg-gray-200">
   
 
-<div class="flex h-screen bg-gray-200  items-center justify-center  mt-32 mb-32" style="background-image: ">
+<div class="flex h-screen bg-gray-200  items-center justify-center  mt-20 mb-32" >
   <div class="grid bg-white rounded-lg shadow-xl w-11/12 md:w-9/12 lg:w-1/2">
     <div class="flex justify-center py-4">
       <div class="flex bg-purple-200 rounded-full md:p-4 p-2 border-2 border-purple-300">
@@ -32,35 +32,32 @@
 
     <div class="flex justify-center">
       <div class="flex">
-        <h1 class="text-gray-600 font-bold md:text-2xl text-xl">Form</h1>
+        <h1 class="text-gray-600 font-bold md:text-2xl text-xl">Artisan</h1>
       </div>
     </div>
 
     <div class="grid grid-cols-1 mt-5 mx-7">
-      <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Input 1</label>
-      <input class="py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" type="text" placeholder="Input 1" />
+      <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">description</label>
+      <textarea  class="py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" type="text" placeholder="Input 1"> </textarea>
     </div>
 
     <div class="grid grid-cols-1 mt-5 mx-7">
-      <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Selection</label>
+      <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">job</label>
       <select class="py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent">
         <option>Option 1</option>
-        <option>Option 2</option>
-        <option>Option 3</option>
       </select>
     </div>
 
     <div class="grid grid-cols-1 mt-5 mx-7">
-      <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Selection</label>
+      <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">skills</label>
       <select class="py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent">
-        <option>Option 1</option>
-        <option>Option 2</option>
-        <option>Option 3</option>
+        <option >Option 1</option>
+     
       </select>
     </div>
 
     <div class="grid grid-cols-1 mt-5 mx-7">
-      <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold mb-1">Upload Photos</label>
+      <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold mb-1">services Photos</label>
       <div class='flex items-center justify-center w-full'>
           <label class='flex flex-col border-4 border-dashed w-full h-32 hover:bg-gray-100 hover:border-purple-300 group'>
               <div class='flex flex-col items-center justify-center pt-7'>
@@ -76,7 +73,6 @@
       <button class='w-auto bg-gray-500 hover:bg-gray-700 rounded-lg shadow-xl font-medium text-white px-4 py-2'>Cancel</button>
       <button class='w-auto bg-purple-500 hover:bg-purple-700 rounded-lg shadow-xl font-medium text-white px-4 py-2'>Create</button>
     </div>
-
   </div>
 </div>
     

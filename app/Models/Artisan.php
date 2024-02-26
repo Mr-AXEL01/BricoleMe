@@ -8,7 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Artisan extends Model
 {
     use HasFactory;
+     
+    protected $fillable = ['user_id', 'images', 'description'];
 
+    protected $casts = [
+        'images' => 'array',
+    ];
 
     public function metier() {
         return $this->hasMany(metier::class);
@@ -16,5 +21,8 @@ class Artisan extends Model
 
     public function competance() {
         return $this->hasMany(competance::class);
+    }
+    public function user (){
+        return $this->belongsto(user::class)
     }
 }

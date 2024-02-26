@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
-            $table->date('date');
+            $table->dateTime('date');
             $table->enum('status',['pending','doing','done']);
             $table->foreignId('service_id')
             ->constrained('services')

@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\artisan;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -51,5 +53,11 @@ Route::get('/artisan/dashboard' , function () {
 Route::get('/artisan/info' , function () {
     return view('artisan.info');
 });
+
+// Route::post('/ArtisanRegister' ,[artisan::class , 'register']);
+
+});
+Route::middleware(['auth'])->group(function () {
+    Route::post('/artisan/update', [artisan::class, 'update'])->name('artisan.update');
 });
 
