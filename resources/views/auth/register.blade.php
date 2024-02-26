@@ -33,7 +33,7 @@
 
                 <h1 class="text-xl md:text-4xl font-extrabold leading-tight ml-[36%]">Register</h1>
 
-                <form method="POST" action="{{ route('register') }}">
+                <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                     @csrf
 
                     <!-- ___________image___________ -->

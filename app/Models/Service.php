@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class service extends Model
+class Service extends Model
 {
     use HasFactory;
 
@@ -17,10 +17,10 @@ class service extends Model
 
 
     public function artisan(){
-        return $this->belongsTo(artisan::class);
+        return $this->belongsTo(Artisan::class);
     }
 
     public function reservation() {
-        return $this->hasOne(reservation::class);
+        return $this->hasOne(Reservation::class);
     }
 }
