@@ -58,6 +58,6 @@ Route::get('/artisan/info' , function () {
 
 });
 Route::middleware(['auth'])->group(function () {
-    Route::post('/artisan/update', [artisan::class, 'update'])->name('artisan.update');
+    Route::post('/artisan/', [artisan::class, 'createartisan'])->name('artisan');
 });
 
