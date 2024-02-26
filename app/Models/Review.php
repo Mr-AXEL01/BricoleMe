@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class review extends Model
+class Review extends Model
 {
     use HasFactory;
 
@@ -18,6 +18,6 @@ class review extends Model
 
     
     public function reservation(){
-        return $this->belongsTo(reservation::class);
+        return $this->belongsTo(Reservation::class);
     }
 }

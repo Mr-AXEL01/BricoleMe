@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Auth\GoogleSocialiteController;
 use App\Http\Controllers\PagesController;
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +41,11 @@ Route::group([] , function () {
     Route::get('/admin/users' , [AdminController::class , 'users']);
     Route::get('/admin/claims' , [AdminController::class , 'claims']);
 });
+
+//Goooooooooooooooooooooooooooooooooooooooooooooooooooooooogle//
+Route::get('auth/google', [GoogleSocialiteController::class, 'redirectToGoogle']);
+Route::get('callback/google', [GoogleSocialiteController::class, 'handleCallback']);
+
 require __DIR__.'/auth.php';
 
 

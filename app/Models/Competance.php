@@ -5,23 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class metier extends Model
+class Competance extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'name'
-     
     ];
-    
 
 
-
-    public function competance() {
-        return $this->hasMany(competance::class);
+    public function metier(){
+        return $this->belongsTo(Metier::class);
     }
 
     public function artisan() {
-        return $this->hasMany(artisan::class);
+        return $this->hasMany(Artisan::class);
     }
 }

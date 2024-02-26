@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class reclamation extends Model
+class Reclamation extends Model
 {
     use HasFactory;
 
@@ -17,6 +17,6 @@ class reclamation extends Model
 
     
     public function reservation(){
-        return $this->belongsTo(reservation::class);
+        return $this->belongsTo(Reservation::class);
     }
 }
