@@ -21,5 +21,18 @@ class ChatController extends Controller
         return view('chat', compact('messages', 'user_id'));
     }
 
+    public function sendMessage(Request $request, $user_id)
+    {
+        $validatedData = $request->validate([
+            'message' => 'required|string',
+        ]);
 
+        $message = new Message;
+        $message->sender = auth()->id();
+        $message->receiver = $user_id;
+        $message->message = $validatedData['message'];
+        $message->save();
+
+        return redirect()->route('chatForm', $user_id)->with('success', 'Message sent successfully!');
+    }
 }
