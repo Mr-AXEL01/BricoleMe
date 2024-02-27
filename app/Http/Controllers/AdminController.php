@@ -20,4 +20,5 @@ class AdminController extends Controller
     public function claims() {
         return view('admin.claims');
     }
+
 }

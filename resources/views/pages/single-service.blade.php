@@ -191,7 +191,7 @@
                         </div>
                     </div>
                     <button class="block border border-gray-300 py-1.5 px-6">
-                        Contact-me
+                        Message-me
                     </button>
                 </div>
             </div>

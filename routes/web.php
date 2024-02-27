@@ -21,6 +21,7 @@ Route::get('/', function () {
 Route::group([], function() {
     Route::get('all-services' , [PagesController::class , 'all_services']);
     Route::get('single-service' , [PagesController::class , 'single_service']);
+    Route::get('services/data' , [PagesController::class , 'services_data']);
 });
 
 Route::get('/dashboard', function () {
