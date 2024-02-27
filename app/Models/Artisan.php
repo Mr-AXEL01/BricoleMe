@@ -28,4 +28,8 @@ class Artisan extends Model
     public function competance() {
         return $this->belongsToMany(Competance::class);
     }
+    
+    public function service() {
+        return $this->hasMany(Service::class);
+    }
 }

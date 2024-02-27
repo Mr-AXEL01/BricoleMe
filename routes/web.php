@@ -79,9 +79,10 @@ Route::middleware(['auth'])->group(function () {
 // ==================================client routes================================
 
 Route::group([] , function () {
-    Route::get('/client/reservation' , [ClientController::class , 'reservation']);
+    Route::get('/client/reservation' , [ClientController::class , 'reservation'])->name('reservation');
     Route::get('/client/reclamation' , [ClientController::class , 'reclamation']);
     Route::get('/client/reclamation-forme' , [ClientController::class , 'reclamationForme']);
     Route::get('/client/review' , [ClientController::class , 'review']);
+    Route::get('/client/destroy/{id}', [ClientController::class, 'destroy'])->name('client.destroy');
   
 });

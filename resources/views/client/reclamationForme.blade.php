@@ -17,23 +17,12 @@
 </head>
 
 <body class="text-gray-800 font-inter">
-    <div class="max-w-[80%] mx-auto bg-white rounded-md shadow-md overflow-hidden mt-32">
+    <div class="max-w-[80%] mx-auto bg-white rounded-md shadow-2xl overflow-hidden mt-32">
         <div class="p-4">
             <h2 class="text-xl font-semibold mb-4">Formulaire de Réclamation</h2>
             <!-- Formulaire de réclamation -->
             <form action="#" method="POST">
-                <!-- Sélection de la réservation -->
-                <div class="mb-4">
-                    <label for="reservation" class="block text-sm font-medium text-gray-700">Choisir une réservation
-                        :</label>
-                    <select id="reservation" name="reservation"
-                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                        <option value="reservation1">Réservation 1</option>
-                        <option value="reservation2">Réservation 2</option>
-                        <option value="reservation3">Réservation 3</option>
-                        <!-- Ajoutez plus d'options si nécessaire -->
-                    </select>
-                </div>
+
                 <!-- Message de réclamation -->
                 <div class="mb-6">
                     <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Message de Réclamation
