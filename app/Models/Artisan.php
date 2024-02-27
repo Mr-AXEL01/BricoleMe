@@ -15,12 +15,18 @@ class Artisan extends Model
         'images' => 'array',
     ];
 
+    protected $guarded = [];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
     public function metier() {
-        return $this->hasMany(metier::class);
+        return $this->hasMany(Metier::class);
     }
 
     public function competance() {
-        return $this->hasMany(competance::class);
+        return $this->hasMany(Competance::class);
     }
     public function user (){
         return $this->belongsto(user::class)
