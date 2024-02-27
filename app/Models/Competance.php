@@ -19,6 +19,6 @@ class Competance extends Model
     }
 
     public function artisan() {
-        return $this->hasMany(Artisan::class);
+        return $this->blelongsToMany(Artisan::class);
     }
 }

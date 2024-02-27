@@ -64,9 +64,8 @@ class ArtisanController extends Controller
                 return redirect()->route('artisan')->with('success', 'Artisan updated successfully');
             }
         } catch (\Exception $e) {
-            // Log any exceptions that occur during the process
             Log::error('Exception: ' . $e->getMessage());
-            // Handle the exception as needed (e.g., display an error message to the user)
+           
             return redirect()->back()->with('error', 'An error occurred during the update.');
         }
     }
