@@ -54,8 +54,10 @@ class RegisteredUserController extends Controller
             'city' => $request->ville,
             'phone' => $request->phone,
         ]);
-
-
+        
+        Auth::login($user);
+        event(new Registered($user));
+        
         // dd($user);
         if ($request->role === 'artisan'){
         
@@ -63,6 +65,7 @@ class RegisteredUserController extends Controller
                 'user_id' => $user->id,
             ]);
             $user->assignRole('artisan');
+            return redirect(RouteServiceProvider::UPDATE);
         }
 
         if ($request->role === 'client') {
@@ -71,14 +74,11 @@ class RegisteredUserController extends Controller
                 'user_id' => $user->id,
             ]);
             $user->assignRole('client');
+            return redirect(RouteServiceProvider::CLIENT);
         }
 
-        event(new Registered($user));
         // $user->assignRole('admin');
-
-        Auth::login($user);
-
-
+        
         return redirect(RouteServiceProvider::HOME);
     }
 }
