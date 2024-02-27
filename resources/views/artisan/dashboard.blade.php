@@ -12,12 +12,8 @@
         <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
         <script src="https://cdn.tailwindcss.com"></script>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-      <link rel="stylesheet" href="css/artisan.css">
+      <link rel="stylesheet" href="../css/artisan.css">
     </head>
-
-
-    
-<body class="text-gray-800 font-inter">
  
     <div class="fixed left-0 top-0 w-64 h-full bg-[#f8f4f3] p-4 z-50 sidebar-menu transition-transform">
         <a href="#" class="flex items-center pb-4 border-b border-b-gray-800">
@@ -314,20 +310,20 @@
                 </script>
 
                 <li class="dropdown ml-3">
-                    <button type="button" class="dropdown-toggle flex items-center">
+                    <button type="button" class="dropdown-toggle flex items-center"  id="user-menu-button" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
                         <div class="flex-shrink-0 w-10 h-10 relative">
                             <div class="p-1 bg-white rounded-full focus:outline-none focus:ring">
-                                <img class="w-8 h-8 rounded-full" src="https://laravelui.spruko.com/tailwind/ynex/build/assets/images/faces/9.jpg" alt=""/>
+                                <img class="w-8 h-8 rounded-full"  src="{{ asset('storage/pics/' . Auth::user()->picture)}}" alt=""/>
                                 <div class="top-0 left-7 absolute w-3 h-3 bg-lime-400 border-2 border-white rounded-full animate-ping"></div>
                                 <div class="top-0 left-7 absolute w-3 h-3 bg-lime-500 border-2 border-white rounded-full"></div>
                             </div>
                         </div>
                         <div class="p-2 md:block text-left">
-                            <h2 class="text-sm font-semibold text-gray-800">John Doe</h2>
+                            <h2 class="text-sm font-semibold text-gray-800">{{ Auth::user()->name }}</h2>
                             <p class="text-xs text-gray-500">Administrator</p>
                         </div>                
                     </button>
-                    <ul class="dropdown-menu shadow-md shadow-black/5 z-30 hidden py-1.5 rounded-md bg-white border border-gray-100 w-full max-w-[140px]">
+                    <ul class="dropdown-menu shadow-md shadow-black/5 z-30 hidden py-1.5 rounded-md bg-white border border-gray-100 w-full max-w-[140px]" id="user-dropdown">
                         <li>
                             <a href="#" class="flex items-center text-[13px] py-1.5 px-4 text-gray-600 hover:text-[#f84525] hover:bg-gray-50">Profile</a>
                         </li>
@@ -335,11 +331,20 @@
                             <a href="#" class="flex items-center text-[13px] py-1.5 px-4 text-gray-600 hover:text-[#f84525] hover:bg-gray-50">Settings</a>
                         </li>
                         <li>
-                            <form method="POST" action="">
+                            <form method="POST" action="{{ route('logout') }}">
                                 <a role="menuitem" class="flex items-center text-[13px] py-1.5 px-4 text-gray-600 hover:text-[#f84525] hover:bg-gray-50 cursor-pointer"
                                     onclick="event.preventDefault();
                                     this.closest('form').submit();">
-                                    Log Out
+                                         {{ __('Log Out') }}
+                                       <form >
+                @csrf
+
+                <x-dropdown-link :href="route('logout')"
+                        onclick="event.preventDefault();
+                                    this.closest('form').submit();">
+                  
+                </x-dropdown-link>
+            </form>
                                 </a>
                             </form>
                         </li>
@@ -350,9 +355,9 @@
         <!-- end navbar -->
 
     </main>
+ 
+    <script src="../js/artisan.js"></script>
+  
 
-    <script src="https://unpkg.com/@popperjs/core@2"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="js/artisan.js"></script>
 </body>
 </html>

@@ -28,7 +28,5 @@ class Artisan extends Model
     public function competance() {
         return $this->hasMany(Competance::class);
     }
-    public function user (){
-        return $this->belongsto(user::class)
-    }
+  
 }
