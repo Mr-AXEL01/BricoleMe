@@ -15,6 +15,8 @@
       <link rel="stylesheet" href="css/artisan.css">
     </head>
 
+
+    
 <body class="text-gray-800 font-inter">
  
     <div class="fixed left-0 top-0 w-64 h-full bg-[#f8f4f3] p-4 z-50 sidebar-menu transition-transform">
