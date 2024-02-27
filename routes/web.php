@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\artisan;
 use App\Http\Controllers\Auth\GoogleSocialiteController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ClientController;
@@ -42,7 +43,11 @@ Route::middleware('auth')->group(function () {
 Route::group([] , function () {
     Route::get('/admin/dashboard' , [AdminController::class , 'dashboard']);
     Route::get('/admin/users' , [AdminController::class , 'users']);
+
+
     Route::get('/admin/claims' , [AdminController::class , 'claims']);
+
+
 });
 
 //Goooooooooooooooooooooooooooooooooooooooooooooooooooooooogle//
@@ -62,6 +67,12 @@ Route::get('/artisan/dashboard' , function () {
 Route::get('/artisan/info' , function () {
     return view('artisan.info');
 });
+
+// Route::post('/ArtisanRegister' ,[artisan::class , 'register']);
+
+});
+Route::middleware(['auth'])->group(function () {
+    Route::post('/artisan/', [artisan::class, 'createartisan'])->name('artisan');
 });
 
 

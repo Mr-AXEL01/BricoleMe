@@ -17,8 +17,10 @@ return new class extends Migration
             ->constrained('users')
             ->onDelete('cascade')
             ->onUpdate('cascade');
-            
+            $table->json('images')->nullable(); 
+            $table->text('description')->nullable(); 
             $table->timestamps();
+            
         });
     }
 
