@@ -22,11 +22,23 @@ class Artisan extends Model
     }
 
     public function metier() {
+<<<<<<< HEAD
         return $this->blelongsToMany(Metier::class);
     }
 
     public function competance() {
         return $this->belonsToMany(Competance::class);
+=======
+        return $this->belongsToMany(Metier::class);
+    }
+
+    public function competance() {
+        return $this->belongsToMany(Competance::class);
+    }
+    
+    public function service() {
+        return $this->hasMany(Service::class);
+>>>>>>> origin/master
     }
   
 }

@@ -5,10 +5,7 @@
 
     @include('components.nav-client')
 
-    <a href="/client/reclamation-forme"> <button
-            class="mt-5 bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded  ml-4">
-            add reclamation</button>
-    </a>
+
 
 
     <div class=" mt-5 mr-4 ml-4 w-md mx-auto bg-white rounded-md shadow-md overflow-hidden">

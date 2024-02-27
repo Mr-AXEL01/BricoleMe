@@ -22,6 +22,10 @@ class Metier extends Model
     }
 
     public function artisan() {
+<<<<<<< HEAD
         return $this->belonsToMany(Artisan::class);
+=======
+        return $this->belongsToMany(Artisan::class);
+>>>>>>> origin/master
     }
 }

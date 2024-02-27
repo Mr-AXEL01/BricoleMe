@@ -19,6 +19,10 @@ class Competance extends Model
     }
 
     public function artisan() {
+<<<<<<< HEAD
         return $this->blelongsToMany(Artisan::class);
+=======
+        return $this->belongsToMany(Artisan::class);
+>>>>>>> origin/master
     }
 }
