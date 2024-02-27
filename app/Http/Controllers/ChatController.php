@@ -26,13 +26,17 @@ class ChatController extends Controller
         $validatedData = $request->validate([
             'message' => 'required|string',
         ]);
-
         $message = new Message;
         $message->sender = auth()->id();
         $message->receiver = $user_id;
         $message->message = $validatedData['message'];
         $message->save();
 
+        // Get the recipient user
+        $recipient = User::findOrFail($user_id);
+
+        broadcast(new MessageSent($recipient, $message->message));
         return redirect()->route('chatForm', $user_id)->with('success', 'Message sent successfully!');
+
     }
 }
