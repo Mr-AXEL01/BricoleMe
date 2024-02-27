@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('description');
             $table->unsignedBigInteger('artisan_id');
+            $table->integer('hour');
             $table->integer('tarif');
             $table->timestamps();
             $table->foreign('artisan_id')->references('id')->on('artisans')->onDelete('cascade')->onUpdate('cascade');

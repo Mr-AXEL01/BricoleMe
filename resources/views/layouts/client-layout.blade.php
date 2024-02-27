@@ -15,7 +15,7 @@
 
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <link rel="stylesheet" href="css/artisan.css">
+    <link rel="stylesheet" href="../css/artisan.css">
 </head>
 
 <body class="text-gray-800 font-inter">
@@ -62,7 +62,7 @@
 
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="js/artisan.js"></script>
+    <script src="../js/artisan.js"></script>
 </body>
 
 </html>
