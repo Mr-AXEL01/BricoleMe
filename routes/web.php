@@ -107,6 +107,9 @@ Route::middleware(['auth', 'role:client'])->group(function () {
     
         // ___________client cancel reservarion______________
     Route::get('/client/destroy/{id}', [ClientController::class, 'destroy'])->name('client.destroy');
+
+     // ___________client cancel reservarion______________
+     Route::get('/client/profile' , [ClientController::class , 'profile'])->name('reservation');
     
                 // ==================reclamation controller=================
     //  _______page des reclamation___________

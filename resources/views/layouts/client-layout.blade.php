@@ -51,6 +51,15 @@
                     <span class="">Reclamation</span>
                 </a>
 
+                <a href="/client/profile"
+                class="text-sm font-medium text-gray-700 py-3 px-2 hover:bg-teal-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out">
+                <svg class="w-6 h-6 fill-current inline-block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                    <circle cx="10" cy="5" r="5" fill="none" stroke="currentColor" stroke-width="2"></circle>
+                    <path d="M16 16c-2.667 0-5.333-2-8-6s-3.333-6-3.333-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+                </svg>
+                <span class="">Profile</span>
+            </a>
+
 
 
         </ul>

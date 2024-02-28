@@ -68,7 +68,7 @@
                                 https://www.samsic-emploi.fr/sites/samsic-emploi/files/styles/image_contenu/public/paragraph/image/2021-03/image%20m%C3%A9tier%20plombier%20-%20samsic%20emploi.jpg?itok=skyMmgY_"
                                     class="h-32 rounded-lg w-full object-cover">
                                 <div class="flex justify-center">
-                                    <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+                                    <img src="{{asset('public/userPics'. $reserv->service->artisan->user->picture)}}"
                                         class="rounded-full -mt-6 border-4 object-center object-cover border-white mr-2 h-16 w-16">
                                 </div>
                                 <div class="py-2 px-2">
@@ -81,7 +81,7 @@
 
 
                                     <p class="text-md pt-2"><strong>Service:</strong> {{ $reserv->service->name }}
-                                        | {{ $reserv->service->tarif }} DH/heur</p>
+                                        | {{ $reserv->tarif_total }} DH/heur</p>
                                     <p class="text-md pt-2"><strong>date départ:</strong>{{ $reserv->dateDepart }}</p>
                                     <p class="text-md pt-2"><strong>date final:</strong>{{ $reserv->dateFinal }}</p>
                                     <p class="text-md pt-2"><strong>Status:</strong> {{ $reserv->status }}</p>
