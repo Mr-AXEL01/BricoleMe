@@ -3,12 +3,15 @@
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\DevisController;
 use App\Http\Controllers\ProfileController;
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\artisan;
-use App\Http\Controllers\Auth\GoogleSocialiteController;
+use App\Http\Controllers\DevisController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\ArtisanController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Auth\GoogleSocialiteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -71,13 +74,23 @@ Route::get('/artisan/dashboard' , function () {
     return view('artisan.dashboard');
 });
 
-Route::get('/artisan/info' , function () {
-    return view('artisan.info');
+Route::get('/artisan/update' , function () {
+    return view('artisan.update');
+});
+
+Route::get('/artisan/service' , function () {
+    return view('artisan.service');
+});
+
+Route::get('/artisan/edit', [ArtisanController::class, 'edit'])->name('edit-artisan');
+Route::post('/artisan/update/{id}', [ArtisanController::class, 'update'])->name('update-artisan');
+Route::get('/artisan/update', [ArtisanController::class, 'artisanRegisterData'])->name('artisan-register-data');
+
 });
 
 // Route::post('/ArtisanRegister' ,[artisan::class , 'register']);
 
-});
+
 Route::middleware(['auth'])->group(function () {
     Route::post('/artisan/', [artisan::class, 'createartisan'])->name('artisan');
 });

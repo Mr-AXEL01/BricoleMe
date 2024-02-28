@@ -17,7 +17,7 @@ return new class extends Migration
             ->constrained('users')
             ->onDelete('cascade')
             ->onUpdate('cascade');
-            $table->json('images')->nullable(); 
+            $table->boolean('availability')->default(true);  
             $table->text('description')->nullable(); 
             $table->timestamps();
             

@@ -17,11 +17,29 @@ class Artisan extends Model
 
     protected $guarded = [];
 
+
+    public function MetierArtisan()
+    {
+        return $this->hasMany(MetierArtisan::class);
+    }
+
+   
+    public function images()
+    {
+        return $this->hasMany(Image::class);
+    }
+
+    public function competanceArtisan()
+    {
+        return $this->hasMany(competanceArtisan::class);
+    }
+
     public function user(){
         return $this->belongsTo(User::class);
     }
 
     public function metier() {
+
         return $this->belongsToMany(Metier::class);
     }
 
@@ -31,5 +49,7 @@ class Artisan extends Model
     
     public function service() {
         return $this->hasMany(Service::class);
+
     }
+  
 }
