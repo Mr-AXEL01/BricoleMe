@@ -4,34 +4,66 @@
     <main class="w-full md:w-[calc(100%-256px)] md:ml-64 bg-gray-200 min-h-screen transition-all main">
 
         @include('components.nav-client')
-        @if(session('success'))
-        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
-            <strong class="font-bold">Success!</strong>
-            <span class="block sm:inline">{{ session('success') }}</span>
-            <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
-                <svg class="fill-current h-6 w-6 text-green-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                    <title>Close</title>
-                    <path fill-rule="evenodd" d="M14.348 5.652a.5.5 0 0 1 .708.708L10.707 10l4.35 4.35a.5.5 0 1 1-.708.708L10 10.707l-4.35 4.35a.5.5 0 1 1-.708-.708L9.293 10 4.643 5.65a.5.5 0 1 1 .708-.708L10 9.293l4.35-4.35z"/>
-                </svg>
-            </span>
-        </div>
-    @endif
+        @if (session('success'))
+            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+                <strong class="font-bold">Success!</strong>
+                <span class="block sm:inline">{{ session('success') }}</span>
+                <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+                    <svg class="fill-current h-6 w-6 text-green-500" role="button" xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20">
+                        <title>Close</title>
+                        <path fill-rule="evenodd"
+                            d="M14.348 5.652a.5.5 0 0 1 .708.708L10.707 10l4.35 4.35a.5.5 0 1 1-.708.708L10 10.707l-4.35 4.35a.5.5 0 1 1-.708-.708L9.293 10 4.643 5.65a.5.5 0 1 1 .708-.708L10 9.293l4.35-4.35z" />
+                    </svg>
+                </span>
+            </div>
+        @endif
         <div class="flex flex-wrap">
 
             @foreach ($reservations as $reserv)
-            
                 <div class="md:w-1/2 lg:w-1/3 py-4 px-4">
                     <div>
                         <div>
                             <div class="bg-white relative shadow p-2 rounded-lg text-gray-800 hover:shadow-lg">
-                                <a href=" {{route('client.reclamation-forme', ['id' => $reserv->id]) }}"
-                               
-                                    class="right-0 mt-4 rounded-l-full absolute text-center font-bold text-xs text-red-600 px-2 py-1 bg-orange-200">
+                                {{-- reclamation button --}}
+                                <a href=" {{ route('client.reclamation-forme', ['id' => $reserv->id]) }}"
+                                    class="right-0  rounded-l-full absolute text-center font-bold text-xs text-red-600 px-2 py-1 bg-orange-200">
                                     <i class="fa-solid fa-circle-xmark fa-xl" style="color: #ff0000;">
                                     </i>
                                     <p>reclamer</p>
 
                                 </a>
+
+                                {{-- devis download --}}
+                                <a href="{{ route('client.download', ['id' => $reserv->id]) }} " class="right-0 mt-4 ">
+
+                                    <button class="download-button">
+                                        <div class="docs">
+                                            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor"
+                                                stroke-width="2" fill="none" stroke-linecap="round"
+                                                stroke-linejoin="round" class="css-i6dzq1">
+                                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                                <polyline points="14 2 14 8 20 8"></polyline>
+                                                <line x1="16" y1="13" x2="8" y2="13"></line>
+                                                <line x1="16" y1="17" x2="8" y2="17"></line>
+                                                <polyline points="10 9 9 9 8 9"></polyline>
+                                            </svg>
+                                            Devis
+                                        </div>
+                                        <div class="download">
+                                            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor"
+                                                stroke-width="2" fill="none" stroke-linecap="round"
+                                                stroke-linejoin="round" class="css-i6dzq1">
+                                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                                <polyline points="7 10 12 15 17 10"></polyline>
+                                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                                            </svg>
+                                        </div>
+                                    </button>
+
+
+                                </a>
+
                                 <img src="
                                 https://www.samsic-emploi.fr/sites/samsic-emploi/files/styles/image_contenu/public/paragraph/image/2021-03/image%20m%C3%A9tier%20plombier%20-%20samsic%20emploi.jpg?itok=skyMmgY_"
                                     class="h-32 rounded-lg w-full object-cover">
@@ -57,13 +89,13 @@
 
 
                                 @if ($reserv->status == 'pending')
-                                    <a href="{{route('client.destroy', ['id' => $reserv->id]) }}"><button id="reserveBtn"
+                                    <a href="{{ route('client.destroy', ['id' => $reserv->id]) }}"><button id="reserveBtn"
                                             class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-4 w-full">
                                             Cancel
                                         </button>
                                     </a>
                                 @elseif($reserv->status == 'done')
-                                    <a href="{{route('client.review', ['id' => $reserv->id]) }}"> <button id="reserveBtn"
+                                    <a href="{{ route('client.review', ['id' => $reserv->id]) }}"> <button id="reserveBtn"
                                             class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-4 w-full">
                                             Review
                                         </button>
@@ -80,7 +112,6 @@
 
                     </div>
                 </div>
-                
             @endforeach
 
 

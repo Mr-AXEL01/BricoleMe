@@ -4,21 +4,23 @@ namespace App\Http\Controllers;
 
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use App\Models\Reservation;
 
 class DevisController extends Controller
 {
-public function generate(Request $request)
+public function generate($id)
 {
-    $client_name = 'John Doe';
-    $artisan_name = 'Jane Smith';
-    $artisan_phone = '+123456789';
-    $artisan_email = 'jane@example.com';
+    $reservations = Reservation::where('client_id', auth()->user()->client->id)->first();
+    
+    $client_name = $reservations->client->user->name;
+    $artisan_name = $reservations->service->artisan->user->name;
+    $artisan_phone = $reservations->service->artisan->user->phone;
+    $artisan_email = $reservations->service->artisan->user->email;
 
 
     $services = [
-        ['name'=>'draw_wall' , 'price' => '€100'],
-        ['name'=>'fixing car engine', 'price' => '€150'],
-        ['name'=>'wash car', 'price' => '€20'],
+        ['name'=>$reservations->service->name , 'priceTotal' => $reservations->tarif_total],
+       
     ];
 
 

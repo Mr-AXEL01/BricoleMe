@@ -43,7 +43,7 @@ Route::middleware('auth')->group(function () {
 
 
 //    ----------devis------------------
-    Route::get('/devis', [DevisController::class, 'generate']);
+    Route::get('/devis/{id}', [DevisController::class, 'generate'])->name('client.download');
 
 //    --------------chat----------------
     Route::get('/chat/{user_id}',[ChatController::class , 'chatForm'])->name('chatForm');
