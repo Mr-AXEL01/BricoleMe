@@ -16,6 +16,7 @@ return new class extends Migration
             $table->date('dateDepart');
             $table->date('dateFinal');
             $table->enum('status',['pending','doing','done']);
+            $table->integer('tarif_total');
             $table->foreignId('service_id')
             ->constrained('services')
             ->onDelete('cascade')

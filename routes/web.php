@@ -78,7 +78,7 @@ Route::middleware(['auth'])->group(function () {
 
 // ==================================client routes================================
 
-Route::group([] , function () {
+Route::middleware(['auth', 'role:client'])->group(function () {
     Route::get('/client/reservation' , [ClientController::class , 'reservation'])->name('reservation');
     Route::get('/client/reclamation' , [ClientController::class , 'reclamation']);
     Route::get('/client/reclamation-forme' , [ClientController::class , 'reclamationForme']);
