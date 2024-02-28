@@ -12,6 +12,8 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ArtisanController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\GoogleSocialiteController;
+use App\Http\Controllers\ReclamationController;
+use App\Http\Controllers\ReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,8 +56,14 @@ Route::group([] , function () {
     Route::get('/admin/dashboard' , [AdminController::class , 'dashboard']);
     Route::get('/admin/users' , [AdminController::class , 'users']);
 
-
-    Route::get('/admin/claims' , [AdminController::class , 'claims']);
+    // _______________affichage des reclamation pour admin________________
+    
+    Route::get('/admin/claims' , [ReclamationController::class , 'reclamationAdmin'])->name('admin.claims');
+    
+    // ________________accepte de reclamation___________________
+    
+      
+    Route::put('/admin/claimsAccept/{id}' , [ReclamationController::class , 'accepetedClaims'])->name('admin.claims-accepted');
 
 
 });
@@ -100,9 +108,26 @@ Route::middleware(['auth'])->group(function () {
 
 Route::middleware(['auth', 'role:client'])->group(function () {
     Route::get('/client/reservation' , [ClientController::class , 'reservation'])->name('reservation');
-    Route::get('/client/reclamation' , [ClientController::class , 'reclamation']);
-    Route::get('/client/reclamation-forme' , [ClientController::class , 'reclamationForme']);
-    Route::get('/client/review' , [ClientController::class , 'review']);
+    
+        // ___________client cancel reservarion______________
     Route::get('/client/destroy/{id}', [ClientController::class, 'destroy'])->name('client.destroy');
+    
+                // ==================reclamation controller=================
+    //  _______page des reclamation___________
+    Route::get('/client/reclamation' , [ReclamationController::class , 'reclamation'])->name('reclamation');
+    
+    //  _______page de  Forme de reclamation avec id de reservation___________
+    Route::get('/client/reclamation-forme/{id}' , [ReclamationController::class , 'reclamationForme'])->name('client.reclamation-forme');
+    
+    // ___________create une reclamation , insert into reaclamation___________
+    Route::post('/client/reclamer' , [ReclamationController::class , 'createReclamation'])->name('client.reclamer');
+    
+                // ==================review controller=====================
+
+                 //  _______page de  Forme de review avec id de reservation___________
+    Route::get('/client/review/{id}' , [ReviewController::class , 'ReviewForme'])->name('client.review');
+
+      // ___________create une review , insert into review________________
+      Route::post('/client/review' , [ReviewController::class , 'createReiew'])->name('client.addReview');
   
 });

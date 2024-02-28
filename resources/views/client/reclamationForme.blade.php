@@ -21,8 +21,11 @@
         <div class="p-4">
             <h2 class="text-xl font-semibold mb-4">Formulaire de Réclamation</h2>
             <!-- Formulaire de réclamation -->
-            <form action="#" method="POST">
-
+            <form action="{{route('client.reclamer')}}" method="POST">
+                
+                @csrf
+                {{-- capter id de reservation  --}}
+                <input type="hidden" name="reservationId" value="{{$id}}">
                 <!-- Message de réclamation -->
                 <div class="mb-6">
                     <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Message de Réclamation
