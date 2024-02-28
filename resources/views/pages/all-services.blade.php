@@ -135,10 +135,10 @@
                     <div class="w-full  id='${index}}' shadow overflow-hidden">
                         <a href="/single-service/">
                             <div class="max-h-[200px] overflow-hidden rounded-lg">
-                                <img src="{{ asset('img/plumber.jpg') }}" class="h-full max-h-64">
+                                <img src="/storage/userPics/${service.picture}" class="h-full max-h-64">
                             </div>
                             <div class="px-2 py-2 flex items-center gap-2">
-                                <img src="{{ asset('img/plumber.jpg') }}" class="w-8 h-8 rounded-full">
+                                <img src="/storage/userPics/${service.artisan.user.picture}" class="w-8 h-8 rounded-full">
                                 <h4 class="font-bold">${service.name}</h4>
                             </div>
                                  <div class="px-2">
@@ -185,10 +185,10 @@
                     <div class="w-full  id='${index}}' shadow overflow-hidden">
                         <a href="/single-service/">
                             <div class="max-h-[200px] overflow-hidden rounded-lg">
-                                <img src="{{ asset('img/plumber.jpg') }}" class="h-full max-h-64">
+                                <img src="/storage/userPics/${service.picture}" class="h-full max-h-64">
                             </div>
                             <div class="px-2 py-2 flex items-center gap-2">
-                                <img src="{{ asset('img/plumber.jpg') }}" class="w-8 h-8 rounded-full">
+                                <img src="/storage/userPics/${service.artisan.user.picture}" class="w-8 h-8 rounded-full">
                                 <h4 class="font-bold">${service.name}</h4>
                             </div>
                                  <div class="px-2">
@@ -230,10 +230,10 @@
                     <div class="w-full id='${index}' shadow overflow-hidden">
                         <a href="/single-service/">
                             <div class="max-h-[200px] overflow-hidden rounded-lg">
-                                <img src="{{ asset('img/plumber.jpg') }}" class="h-full max-h-64">
+                                <img src="/storage/userPics/${service.picture}" class="h-full max-h-64">
                             </div>
                             <div class="px-2 py-2 flex items-center gap-2">
-                                <img src="{{ asset('img/plumber.jpg') }}" class="w-8 h-8 rounded-full">
+                                <img src="/storage/userPics/${service.artisan.user.picture}" class="w-8 h-8 rounded-full">
                                 <h4 class="font-bold">${service.artisan.user.name}</h4>
 
                             </div>
