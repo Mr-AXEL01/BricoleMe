@@ -4,15 +4,28 @@
     <main class="w-full md:w-[calc(100%-256px)] md:ml-64 bg-gray-200 min-h-screen transition-all main">
 
         @include('components.nav-client')
-
+        @if(session('success'))
+        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+            <strong class="font-bold">Success!</strong>
+            <span class="block sm:inline">{{ session('success') }}</span>
+            <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+                <svg class="fill-current h-6 w-6 text-green-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                    <title>Close</title>
+                    <path fill-rule="evenodd" d="M14.348 5.652a.5.5 0 0 1 .708.708L10.707 10l4.35 4.35a.5.5 0 1 1-.708.708L10 10.707l-4.35 4.35a.5.5 0 1 1-.708-.708L9.293 10 4.643 5.65a.5.5 0 1 1 .708-.708L10 9.293l4.35-4.35z"/>
+                </svg>
+            </span>
+        </div>
+    @endif
         <div class="flex flex-wrap">
 
             @foreach ($reservations as $reserv)
+            
                 <div class="md:w-1/2 lg:w-1/3 py-4 px-4">
                     <div>
                         <div>
                             <div class="bg-white relative shadow p-2 rounded-lg text-gray-800 hover:shadow-lg">
-                                <a href="/client/reclamation-forme"
+                                <a href=" {{route('client.reclamation-forme', ['id' => $reserv->id]) }}"
+                               
                                     class="right-0 mt-4 rounded-l-full absolute text-center font-bold text-xs text-red-600 px-2 py-1 bg-orange-200">
                                     <i class="fa-solid fa-circle-xmark fa-xl" style="color: #ff0000;">
                                     </i>
@@ -50,7 +63,7 @@
                                         </button>
                                     </a>
                                 @elseif($reserv->status == 'done')
-                                    <a href="/client/review"> <button id="reserveBtn"
+                                    <a href="{{route('client.review', ['id' => $reserv->id]) }}"> <button id="reserveBtn"
                                             class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-4 w-full">
                                             Review
                                         </button>
@@ -67,6 +80,7 @@
 
                     </div>
                 </div>
+                
             @endforeach
 
 

@@ -8,7 +8,7 @@ use App\Models\Reservation;
 class ClientController extends Controller
 {
     
-   
+//    ______________function pour affichage des reservation_____________
     
     public function reservation() {
         $reservations = Reservation::all();
@@ -18,8 +18,7 @@ class ClientController extends Controller
     
         foreach ($reservations as $reservation) {
             $reservationDate = new \DateTime($reservation->dateDepart . ' 08:00');
-            $reservationFinal = new \DateTime($reservation->dateFinal . ' 06:00');
-            
+            $reservationFinal = new \DateTime($reservation->dateFinal . ' 17:00');
             if ($currentDate >= $reservationDate && $currentDate <= $reservationFinal ) {
                 $reservation->status = 'doing';
             } elseif ($currentDate > $reservationDate) {
@@ -31,20 +30,9 @@ class ClientController extends Controller
     
         return view('client.reservation', ['reservations' => $reservations]);
     }
+
     
-    public function reclamation() {
-
-        return view('client.reclamation');
-    }
-
-    public function reclamationForme() {
-
-        return view('client.reclamationForme');
-    }
-    public function review(){
-
-        return view('client.review');
-    }
+    // ____________cancel de reservation_______________
 
     public function destroy($id) {
         $reservation = Reservation::find($id);
