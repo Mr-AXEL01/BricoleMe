@@ -66,7 +66,7 @@
             <form method="POST" action="{{ route('login') }}">
                 @csrf
 
-                <!-- ______name________ -->
+                <!-- _________name___________ -->
                 <div class="mt-4">
                     <x-input-label for="email" :value="__('Email')"/>
                     <x-text-input id="email"

@@ -39,4 +39,8 @@ class ClientController extends Controller
         $reservation->delete();
         return redirect()->route('reservation');
     }
+
+    public function profile() {
+        return view('client.profile');
+    }
 }
