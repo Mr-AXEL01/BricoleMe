@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\Competance;
 use App\Models\Metier;
+use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -68,5 +69,10 @@ class DatabaseSeeder extends Seeder
                 ]);
             }
         }
+
+        Role::create(['name' => 'admin']);
+        Role::create(['name' => 'artisan']);
+        Role::create(['name' => 'client']);
+
     }
 }

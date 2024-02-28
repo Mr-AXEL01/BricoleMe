@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\ChatController;
+use App\Http\Controllers\DevisController;
+use App\Http\Controllers\ProfileController;
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DevisController;
@@ -38,7 +42,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 
+//    ----------devis------------------
     Route::get('/devis', [DevisController::class, 'generate']);
+
+//    --------------chat----------------
+    Route::get('/chat/{user_id}',[ChatController::class , 'chatForm'])->name('chatForm');
+    Route::post('/chat/{user_id}', [ChatController::class, 'sendMessage'])->name('sendMessage');
 });
 // Admin Ressources
 Route::group([] , function () {
@@ -89,7 +98,7 @@ Route::middleware(['auth'])->group(function () {
 
 // ==================================client routes================================
 
-Route::group([] , function () {
+Route::middleware(['auth', 'role:client'])->group(function () {
     Route::get('/client/reservation' , [ClientController::class , 'reservation'])->name('reservation');
     Route::get('/client/reclamation' , [ClientController::class , 'reclamation']);
     Route::get('/client/reclamation-forme' , [ClientController::class , 'reclamationForme']);
