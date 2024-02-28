@@ -1,9 +1,6 @@
 <?php
 
 use App\Http\Controllers\ChatController;
-use App\Http\Controllers\DevisController;
-use App\Http\Controllers\ProfileController;
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DevisController;
@@ -14,6 +11,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\GoogleSocialiteController;
 use App\Http\Controllers\ReclamationController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\ServiceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -77,23 +75,19 @@ require __DIR__.'/auth.php';
 
 
 // artisan resources
-Route::group([] , function () {
-Route::get('/artisan/dashboard' , function () {
-    return view('artisan.dashboard');
-});
 
-Route::get('/artisan/update' , function () {
-    return view('artisan.update');
-});
-
-Route::get('/artisan/service' , function () {
-    return view('artisan.service');
-});
-
-Route::get('/artisan/edit', [ArtisanController::class, 'edit'])->name('edit-artisan');
-Route::post('/artisan/update/{id}', [ArtisanController::class, 'update'])->name('update-artisan');
-Route::get('/artisan/update', [ArtisanController::class, 'artisanRegisterData'])->name('artisan-register-data');
-
+Route::middleware(['auth', 'role:artisan'])->group(function () {
+    Route::get('/artisan/dashboard' , function () {
+        return view('artisan.dashboard');
+    })->name('artisan.dashboard');
+    Route::get('/artisan/update' , function () {
+        return view('artisan.update');
+    });
+    Route::get('/artisan/service', [ServiceController::class, 'index'])->name('artisan.service');
+    Route::get('/artisan/edit', [ArtisanController::class, 'edit'])->name('edit-artisan');
+    Route::post('/artisan/update/{id}', [ArtisanController::class, 'update'])->name('update-artisan');
+    Route::get('/artisan/update', [ArtisanController::class, 'artisanRegisterData'])->name('artisan-register-data');
+    Route::post('/artisan/dashboard', [ServiceController::class, 'store'])->name('services.store');
 });
 
 // Route::post('/ArtisanRegister' ,[artisan::class , 'register']);

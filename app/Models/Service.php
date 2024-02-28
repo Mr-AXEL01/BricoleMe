@@ -9,11 +9,7 @@ class Service extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'name',
-        'description',
-        'tarif'
-    ];
+    protected $guarded = [];
 
 
     public function artisan(){
