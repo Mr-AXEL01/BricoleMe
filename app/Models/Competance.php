@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class competance extends Model
+class Competance extends Model
 {
     use HasFactory;
 
@@ -15,10 +15,10 @@ class competance extends Model
 
 
     public function metier(){
-        return $this->belongsTo(metier::class);
+        return $this->belongsTo(Metier::class);
     }
 
     public function artisan() {
-        return $this->hasMany(artisan::class);
+        return $this->belongsToMany(Artisan::class);
     }
 }

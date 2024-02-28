@@ -16,7 +16,11 @@
         "vite": "^5.0.0"
     },
     "dependencies": {
+<<<<<<< HEAD
         "laravel-echo": "^1.16.0",
         "pusher-js": "^8.4.0-rc2"
+=======
+        "swiper": "^11.0.6"
+>>>>>>> 4691f717231ab9181b2de10808123da8fe05448f
     }
 }

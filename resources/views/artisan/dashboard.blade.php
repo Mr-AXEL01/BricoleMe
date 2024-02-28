@@ -10,11 +10,13 @@
         <title>{{ config('app.name', 'Laravel') }}</title>
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
         <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-        
+        <script src="https://cdn.tailwindcss.com"></script>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-      <link rel="stylesheet" href="css/artisan.css">
+      <link rel="stylesheet" href="../css/artisan.css">
     </head>
 
+
+    
 <body class="text-gray-800 font-inter">
  
     <div class="fixed left-0 top-0 w-64 h-full bg-[#f8f4f3] p-4 z-50 sidebar-menu transition-transform">
@@ -351,6 +353,6 @@
 
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="js/artisan.js"></script>
+<script src="../js/artisan.js"></script>
 </body>
 </html>

@@ -1,0 +1,54 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\Reservation;
+
+class ClientController extends Controller
+{
+    
+   
+    
+    public function reservation() {
+        $reservations = Reservation::all();
+        $currentDate = new \DateTime();
+
+      
+    
+        foreach ($reservations as $reservation) {
+            $reservationDate = new \DateTime($reservation->dateDepart . ' 08:00');
+            $reservationFinal = new \DateTime($reservation->dateFinal . ' 06:00');
+            
+            if ($currentDate >= $reservationDate && $currentDate <= $reservationFinal ) {
+                $reservation->status = 'doing';
+            } elseif ($currentDate > $reservationDate) {
+                $reservation->status = 'done';
+            }else{
+                $reservation->status = 'pending';
+            }
+        }
+    
+        return view('client.reservation', ['reservations' => $reservations]);
+    }
+    
+    public function reclamation() {
+
+        return view('client.reclamation');
+    }
+
+    public function reclamationForme() {
+
+        return view('client.reclamationForme');
+    }
+    public function review(){
+
+        return view('client.review');
+    }
+
+    public function destroy($id) {
+        $reservation = Reservation::find($id);
+        $reservation->delete();
+        return redirect()->route('reservation');
+    }
+}
