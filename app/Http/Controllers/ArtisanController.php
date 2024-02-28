@@ -27,8 +27,6 @@ class ArtisanController extends Controller
             'multiplePhotos' => 'required',
         ]);
 
-      
-        $artisan = auth()->user();
        
         if ($request->hasFile('multiplePhotos')) {
             $files = $request->file('multiplePhotos');
@@ -37,7 +35,7 @@ class ArtisanController extends Controller
                 $file->storeAs('public/image', $picturesName);
                 Image::create([
                     'image' => $picturesName,
-                    'artisan_id' => $artisan->id,
+                    'artisan_id' => auth()->user()->artisan->id,
                 ]);
             }
         }
@@ -45,30 +43,30 @@ class ArtisanController extends Controller
     
         foreach ($request->input('competences') as $competenceId) {
             CompetanceArtisan::create([
-                'artisan_id' => $artisan->id,
+                'artisan_id' => auth()->user()->artisan->id,
                 'competance_id' => $competenceId,
             ]);
         }
     
         MetierArtisan::create([
-            'artisan_id' => $artisan->id,
+            'artisan_id' => auth()->user()->artisan->id,
             'metier_id' => $request->input('metier_id'),
         ]);
        
     
-        if ($id) {
-            $artisan = Artisan::findOrFail($id);
+        // if ($id) {
+        //     $artisan = Artisan::findOrFail($id);
     
-            $artisan->update([
-                'description' => $request->description,
+        //     $artisan->update([
+        //         'description' => $request->description,
              
-            ]);
+        //     ]);
     
-            // dd($request->all());
-    
-            // return redirect()->view('artisa.dashboard')->with('success', 'Artisan updated successfully');
-            return view('artisan.dashboard');
-        }
+            
+        //     // return redirect()->view('artisa.dashboard')->with('success', 'Artisan updated successfully');
+        // }
+        // dd($request->all());
+        return view('artisan.dashboard');
     }
     
     public function ArtisanRegisterData()

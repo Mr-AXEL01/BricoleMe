@@ -123,8 +123,13 @@
                     @if (Route::has('login'))
                         <div class="  text-right z-10">
                             @auth
-                                <a href="{{ url('/dashboard') }}"
-                                   class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
+                                @role('client')
+                                    <a href="/client/reservation"
+                                    class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
+                                @else
+                                    <a href="/artisan/dashboard"
+                                    class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
+                                @endrole
                             @else
 
                                 <a href="{{ route('login') }}"
@@ -191,7 +196,7 @@
                         </div>
                     </div>
                     <button class="block border border-gray-300 py-1.5 px-6">
-                        Contact-me
+                        Message-me
                     </button>
                 </div>
             </div>
@@ -235,51 +240,53 @@
                     sapiente tempora voluptates.</p>
             </div>
         </div>
-        <div class="bg-[#f1f5f6] w-full  xl:max-w-[30%] p-4">
-            <h1 class="text-2xl font-semibold mb-6">Cart</h1>
+        @role('client')
+            <div class="bg-[#f1f5f6] w-full  xl:max-w-[30%] p-4">
+                <h1 class="text-2xl font-semibold mb-6">Cart</h1>
 
-            <div class="relative overflow-x-auto">
-                <table class="w-full text-sm text-left rtl:text-right text-gray-500">
-                    <thead class="text-xs text-gray-700 uppercase bg-yellow-400">
-                    <tr>
-                        <th scope="col" class="px-3 py-3 ">
-                            Service name
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Artisan name
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Price
-                        </th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr class="bg-white text-gray-900">
+                <div class="relative overflow-x-auto">
+                    <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                        <thead class="text-xs text-gray-700 uppercase bg-yellow-400">
+                        <tr>
+                            <th scope="col" class="px-3 py-3 ">
+                                Service name
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Artisan name
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Price
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="bg-white text-gray-900">
 
-                        <td class="px-6 py-4">
-                            Plumbing
-                        </td><td class="px-6 py-4">
-                            Abdelhak
-                        </td>
-                        <td class="px-6 py-4  ">
-                            650 dh
-                        </td>
+                            <td class="px-6 py-4">
+                                Plumbing
+                            </td><td class="px-6 py-4">
+                                Abdelhak
+                            </td>
+                            <td class="px-6 py-4  ">
+                                650 dh
+                            </td>
 
-                    </tr>
+                        </tr>
 
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="my-6 inline-flex justify-end gap-2 w-full">
+                    <form action="" method="post">
+                        @csrf
+                        <input type="hidden" name="id_service" value="id_service">
+                        <input type="hidden" name="id_artisan" value="id_service">
+                        <input type="hidden" name="id_client" value="id_service">
+                        <button type="submit" class="bg-neutral-800 text-yellow-400 px-8 py-2 ">Reserve</button>
+                    </form>
+                </div>
             </div>
-            <div class="my-6 inline-flex justify-end gap-2 w-full">
-                <form action="" method="post">
-                    @csrf
-                    <input type="hidden" name="id_service" value="id_service">
-                    <input type="hidden" name="id_artisan" value="id_service">
-                    <input type="hidden" name="id_client" value="id_service">
-                    <button type="submit" class="bg-neutral-800 text-yellow-400 px-8 py-2 ">Reserve</button>
-                </form>
-            </div>
-        </div>
+        @endrole
     </div>
     </div>
 
