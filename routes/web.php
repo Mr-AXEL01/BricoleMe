@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ChatController;
+use App\Http\Controllers\DevisController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
@@ -37,7 +39,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 
+//    ----------devis------------------
     Route::get('/devis', [DevisController::class, 'generate']);
+
+//    --------------chat----------------
+    Route::get('/chat/{user_id}',[ChatController::class , 'chatForm'])->name('chatForm');
+    Route::post('/chat/{user_id}', [ChatController::class, 'sendMessage'])->name('sendMessage');
 });
 // Admin Ressources
 Route::group([] , function () {
