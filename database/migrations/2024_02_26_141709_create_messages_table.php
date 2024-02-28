@@ -11,24 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('artisans', function (Blueprint $table) {
+        Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')
-            ->constrained('users')
-            ->onDelete('cascade')
-            ->onUpdate('cascade');
-            $table->boolean('availability')->default(true);  
-            $table->text('description')->nullable(); 
+            $table->foreignId('sender')->constrained('users');
+            $table->foreignId('receiver')->constrained('users');
+            $table->text('message');
             $table->timestamps();
-            
         });
     }
+
+
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('artisans');
+        Schema::dropIfExists('messages');
     }
 };
