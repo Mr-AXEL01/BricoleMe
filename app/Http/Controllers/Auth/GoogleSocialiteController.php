@@ -41,8 +41,9 @@ class GoogleSocialiteController extends Controller
                 ]);
 
                 Auth::login($newUser);
+                $newUser->assignRole('client');
 
-                return redirect('/dashboard');
+                return redirect('/client/reservation');
             }
 
         }
