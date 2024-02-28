@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\Models\User;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -35,5 +36,9 @@ class MessageSent implements ShouldBroadcast
         return [
             new PrivateChannel('chat'.$this->receiver->id), //secure channel
         ];
+    }
+    public function broadcastAs()
+    {
+        return 'MessageSent';
     }
 }

@@ -13,13 +13,8 @@
     <h1 class="text-3xl font-semibold mb-6">Chat</h1>
 
     <!-- Chat messages -->
-    <div class="bg-white rounded-lg shadow-lg p-4 mb-8">
-        @foreach($messages as $message)
-            <div class="mb-4">
-                <p class="text-gray-600"><strong>{{ $message->sender }}</strong>: {{ $message->message }}</p>
-                <small class="text-gray-400">Sent at: {{ $message->created_at->format('Y-m-d H:i:s') }}</small>
-            </div>
-        @endforeach
+    <div class="bg-white rounded-lg shadow-lg p-4 mb-8" id="chatMessages">
+        {{-- Chat messages will be dynamically added here --}}
     </div>
 
     <!-- Chat form -->
@@ -38,6 +33,32 @@
 
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/laravel-echo@^1.10"></script>
+<script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        // Initialize Laravel Echo with Pusher
+        window.Echo = new Echo({
+            broadcaster: 'pusher',
+            key: '{{ env('PUSHER_APP_KEY') }}',
+            cluster: '{{ env('PUSHER_APP_CLUSTER') }}',
+            encrypted: true,
+        });
+
+        // Listen for events
+        Echo.private('chat{{ $user_id }}')
+            .listen('.App\\Events\\MessageSent', (event) => {
+                console.log('New message received:', event);
+                // Update chat interface with the new message
+                var chatMessages = $('#chatMessages');
+                var messageElement = $('<div>');
+                messageElement.html('<p><strong>' + event.message.sender + '</strong>: ' + event.message.message + '</p><small>Sent at: ' + event.message.created_at + '</small>');
+                chatMessages.append(messageElement);
+            });
+    });
+</script>
+
 </body>
 </html>
-
