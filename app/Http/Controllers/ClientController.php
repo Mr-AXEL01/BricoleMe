@@ -11,7 +11,7 @@ class ClientController extends Controller
 //    ______________function pour affichage des reservation_____________
     
     public function reservation() {
-        $reservations = Reservation::all();
+        $reservations = Reservation::where('client_id', auth()->user()->client->id)->get();
         $currentDate = new \DateTime();
 
       

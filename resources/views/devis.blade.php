@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="{{public_path(/css/devis.css)}}" rel="stylesheet">
+    <link href="{{public_path('/css/devis.css')}}" rel="stylesheet">
     <title>Devis</title>
 </head>
 <body>
@@ -39,7 +39,7 @@
             @foreach($services as $service)
                 <tr>
                     <td>{{ $service['name'] }}</td>
-                    <td>{{ $service['price'] }}</td>
+                    <td>{{ $service['priceTotal'] }}</td>
                 </tr>
             @endforeach
             </tbody>

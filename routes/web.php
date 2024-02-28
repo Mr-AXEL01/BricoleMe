@@ -1,9 +1,6 @@
 <?php
 
 use App\Http\Controllers\ChatController;
-use App\Http\Controllers\DevisController;
-use App\Http\Controllers\ProfileController;
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DevisController;
@@ -45,7 +42,7 @@ Route::middleware('auth')->group(function () {
 
 
 //    ----------devis------------------
-    Route::get('/devis', [DevisController::class, 'generate']);
+    Route::get('/devis/{id}', [DevisController::class, 'generate'])->name('client.download');
 
 //    --------------chat----------------
     Route::get('/chat/{user_id}',[ChatController::class , 'chatForm'])->name('chatForm');
