@@ -44,7 +44,7 @@ class RegisteredUserController extends Controller
         ]);
 
         $imageName = time() . '.' . $request->picture->extension();
-        $request->file('picture')->storeAs('public/pics', $imageName);
+        $request->file('picture')->storeAs('public/userPics', $imageName);
 
         $user = User::create([
             'name' => $request->name,

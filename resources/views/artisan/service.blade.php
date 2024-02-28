@@ -165,7 +165,7 @@
                     <button type="button" class="dropdown-toggle flex items-center"  id="user-menu-button" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
                         <div class="flex-shrink-0 w-10 h-10 relative">
                             <div class="p-1 bg-white rounded-full focus:outline-none focus:ring">
-                                <img class="w-8 h-8 rounded-full"  src="{{ asset('storage/pics/' . Auth::user()->picture)}}" alt=""/>
+                                <img class="w-8 h-8 rounded-full"  src="{{asset('storage/userPics/' . Auth::user()->picture)}}" alt="78"/>
                                 <div class="top-0 left-7 absolute w-3 h-3 bg-lime-400 border-2 border-white rounded-full animate-ping"></div>
                                 <div class="top-0 left-7 absolute w-3 h-3 bg-lime-500 border-2 border-white rounded-full"></div>
                             </div>
@@ -211,6 +211,53 @@
 <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" class="block text-white bg-yellow-400 hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 m-5" type="button">
     create service
   </button>
+<div class="flex flex-wrap">
+
+  @if ($services->isEmpty())
+      <div class="ml-5 col-span-full">
+          <div class="bg-white shadow-md rounded-lg p-4">
+              <p class="text-gray-600">No services found.</p>
+          </div>
+      </div>
+  @else
+    @foreach ($services as $service)
+              
+      <div class="md:w-1/2 lg:w-1/3 py-4 px-4">
+          <div>
+              <div>
+                  <div class="bg-white relative shadow p-2 rounded-lg text-gray-800 hover:shadow-lg">
+                      <img src="{{asset('storage/userPics/' . $service->picture)}}" class="h-32 rounded-lg w-full object-cover">
+
+                      <div class="py-2 px-2">
+                          <p class="text-md pt-2"><strong>Service:</strong> {{ $service->name }}</p>
+                          <p class="text-md pt-2"><strong>Price:</strong>{{ $service->tarif }}DH per {{ $service->hour }}</p>
+                          {{-- <p class="text-md pt-2"><strong>date final:</strong>{{ $service->hour }}</p> --}}
+                          <p class="text-md pt-2"><strong>Status:</strong> {{ $service->description }}</p>
+                      </div>
+
+
+                      {{-- @if ($reserv->status == 'pending') --}}
+                          {{-- <a href=""> <button id="reserveBtn"
+                                  class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-4 w-full">
+                                  Review
+                              </button>
+                          </a> --}}
+                      {{-- @else --}}
+                          <button type="button" id="reserveBtn"
+                              class="bg-green-400 text-black font-bold py-2 px-4 rounded mt-4 w-full">
+                              Reserved
+                          </button>
+                      {{-- @endif --}}
+
+                  </div>
+              </div>
+
+          </div>
+      </div>  
+    @endforeach
+  @endif
+
+</div>
   
   <div id="authentication-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
       <div class="relative p-4 w-full max-w-md max-h-full">
@@ -230,33 +277,27 @@
               </div>
 
               <div class="p-4 md:p-5">
-                  <form class="space-y-4" action="#">
+                  <form class="space-y-4" action="{{ route('services.store') }}" method="POST" enctype="multipart/form-data">@csrf
                       <div>
                           <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">  Name</label>
-                          <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="name@company.com" required />
+                          <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Name of Service" required />
                       </div>
                       <div>
                         <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">description</label>
-                        <input type="text" name="description" id="description" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="name@company.com" required />
+                        <input type="text" name="description" id="description" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Description" required />
                     </div>
                     <div>
                         <label for="tarif" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">tarif</label>
-                        <input type="text" name="tarif" id="tarif" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="name@company.com" required />
+                        <input type="text" name="tarif" id="tarif" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Tarif" required />
                     </div>
                     <div>
                         <label for="hour" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">hour</label>
-                        <input type="time" name="hour" id="hour" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="name@company.com" required />
+                        <input type="number" name="hour" id="hour" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Time of tarif" required />
                     </div>
-                      <div class="flex justify-between">
-                          <div class="flex items-start">
-                              <div class="flex items-center h-5">
-                                  <input id="remember" type="checkbox" value="" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-600 dark:border-gray-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" required />
-                              </div>
-                             
-                          </div>
-
-                      </div>
-                      <button type="submit" class="w-full text-white bg-yellow-400 hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login to your account</button>
+                    <div>
+                      <input type="file" name="picture">
+                    </div>
+                      <button type="submit" class="w-full text-white bg-yellow-400 hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add Serivce</button>
                     
                   </form>
               </div>
