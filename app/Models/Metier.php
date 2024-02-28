@@ -22,6 +22,6 @@ class Metier extends Model
     }
 
     public function artisan() {
-        return $this->belongsToMany(Artisan::class);
+        return $this->belongsToMany(Artisan::class,'metier_of_artisans');
     }
 }

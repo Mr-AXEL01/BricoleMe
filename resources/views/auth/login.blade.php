@@ -36,7 +36,7 @@
 
                 <h2 class="text-2xl font-semibold text-gray-700 text-center">Bricoleme</h2>
                 <p class="text-xl text-gray-600 text-center">Welcome back !</p>
-                <a href="#" class="flex items-center justify-center mt-4 text-white rounded-lg shadow-md hover:bg-gray-100">
+                <a href="{{ url('auth/google') }}" class="flex items-center justify-center mt-4 text-white rounded-lg shadow-md hover:bg-gray-100">
                     <div class="px-4 py-3">
                         <svg class="h-6 w-6" viewBox="0 0 40 40">
                             <path
