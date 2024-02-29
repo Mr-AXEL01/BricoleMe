@@ -9,7 +9,15 @@ class AdminController extends Controller
     //
     public function dashboard() {
 
-        return view('admin.dashboard');
+        $clients = User::whereHas('roles', function ($query) {
+            $query->where('name', 'client');
+        })->get();
+
+        $artisans = User::whereHas('roles', function ($query) {
+            $query->where('name', 'artisan');
+        })->get();
+
+        return view('admin.dashboard', compact('artisans', 'clients'));
     }
 
     public function users()

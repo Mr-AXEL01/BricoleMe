@@ -1,34 +1,40 @@
 <?php
 
+use App\Models\User;
 use Carbon\Carbon;
 
 function tarifTotal($depart, $final, $tarif){
+    
+    $toDate = Carbon::parse($depart);
+    $fromDate = Carbon::parse($final);
 
-    if ($depart === $final){
+    if ($fromDate->isSameDay($toDate)){
         $result = 8 * $tarif;
     } else {
-        $toDate = Carbon::parse($depart);
-        $fromDate = Carbon::parse($final);
 
-        $days = $toDate->diffInDays($fromDate);
+        $days = $toDate->diffInDays($fromDate) + 1;
 
         $result = 8 * $days * $tarif;
     }
     return $result;
 }
 
-function setUsernameAttribute($name, $role)
+function userName($name)
 {
-    // $firstName = $this->attributes['first_name'];
-    // $lastName = strtolower($this->attributes['last_name']);
+    if (strpos($name, ' ')) {
+        $nameParts = explode(' ', $name);
+        $baseUsername = strtolower($nameParts[0]) . '_' . ucfirst(strtolower($nameParts[1]));
+    } else {
+        $baseUsername = strtolower(str_replace(' ', '_', $name));
+    }
 
-    $username = $name . "_" . $role;
+    $username = $baseUsername . '_' . rand(1000, 9999);
 
-    $i = 0;
     while(User::whereUsername($username)->exists())
     {
-        $i++;
-        $username = $name[0] . $i . $role;
+        $randomNumber = rand(1000, 9999);
+        $username = $baseUsername . '_' . $randomNumber;
     }
+
     return $username;
 }
