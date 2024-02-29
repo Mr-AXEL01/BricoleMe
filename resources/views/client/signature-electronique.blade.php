@@ -42,20 +42,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        
+
                             <tr>
                                 <td class="border px-4 py-2">{{ $data['service_name'] }}</td>
                                 <td class="border px-4 py-2">{{ $data['service_price'] }}</td>
                                 <td class="border px-4 py-2">{{ $data['dure'] }} </td>
                                 <td class="border px-4 py-2">{{ $data['tarif_totale'] }} </td>
-                               
+
 
                                 <input type="hidden" name="serviceName" value="{{ $data['service_name'] }}">
                                 <input type="hidden" name="priceTotal" value="{{ $data['service_price'] }}">
                                 <input type="hidden" name="tarifTotale" value="{{ $data['tarif_totale'] }}">
                                 <input type="hidden" name="dure" value="{{ $data['dure'] }}">
                             </tr>
-                       
+
 
                     </tbody>
                 </table>
@@ -69,6 +69,7 @@
 
 
         <input type="hidden" name="clientName" value="{{ $data['client_name'] }}">
+        <input type="hidden" name="clientEmail" value="{{ $data['client_email'] }}">
         <input type="hidden" name="artisanName" value="{{ $data['artisan_name'] }}">
         <input type="hidden" name="artisanPhone" value="{{ $data['artisan_phone'] }}">
         <input type="hidden" name="artisanEmail" value="{{ $data['artisan_email'] }}">
