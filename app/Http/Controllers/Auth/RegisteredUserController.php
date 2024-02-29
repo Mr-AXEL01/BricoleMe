@@ -53,6 +53,7 @@ class RegisteredUserController extends Controller
             'picture' => $imageName,
             'city' => $request->ville,
             'phone' => $request->phone,
+            'username' => userName($request->name),
         ]);
         
         Auth::login($user);

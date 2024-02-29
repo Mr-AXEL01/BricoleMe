@@ -56,7 +56,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/chat/{user_id}', [ChatController::class, 'sendMessage'])->name('sendMessage');
 });
 // Admin Ressources
-Route::group([] , function () {
+Route::middleware('auth', 'role:admin')->group(function () {
     Route::get('/admin/dashboard' , [AdminController::class , 'dashboard']);
     Route::get('/admin/users' , [AdminController::class , 'users']);
 
