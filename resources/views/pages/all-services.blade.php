@@ -20,6 +20,20 @@
 <div>
     @include('components.nav-bar')
 </div>
+@if (session('success'))
+    <div id="success-alert" class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+        <strong class="font-bold">Success!</strong>
+        <span class="block sm:inline">{{ session('success') }}</span>
+    </div>
+@endif
+
+@if (session('error'))
+    <div id="error-alert" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+        <strong class="font-bold">Error!</strong>
+        <span class="block sm:inline">{{ session('error') }}</span>
+    </div>
+@endif
+
 <div class="">
     <div class="container w-[65%] mx-auto">
         <div class="my-10">
@@ -34,7 +48,7 @@
                 </p>
             </div>
             <!-- Field Filter -->
-            <<div class="bg-gray-100 p-5">
+            <div class="bg-gray-100 p-5">
                 <div>
                     <h4 class="text-3xl font-semibold my-3">Filter By</h4>
                 </div>
@@ -228,7 +242,8 @@
                 services.forEach((service, index) => {
                     $('#container_services').append(`
                     <div class="w-full id='${index}' shadow overflow-hidden">
-                        <a href="/single-service/">
+                        <a href="/single-service/${service.id}">
+                            
                             <div class="max-h-[200px] overflow-hidden rounded-lg">
                                 <img src="/storage/userPics/${service.picture}" class="h-full max-h-64">
                             </div>
@@ -257,5 +272,19 @@
         })
     })
 
+   
+    // Fonction pour masquer les alertes après 3 secondes
+    setTimeout(function() {
+        var successAlert = document.getElementById('success-alert');
+        var errorAlert = document.getElementById('error-alert');
+        
+        if (successAlert) {
+            successAlert.style.display = 'none';
+        }
+        
+        if (errorAlert) {
+            errorAlert.style.display = 'none';
+        }
+    }, 3000); // 3000 millisecondes = 3 secondes
 
 </script>

@@ -12,6 +12,7 @@ use App\Http\Controllers\Auth\GoogleSocialiteController;
 use App\Http\Controllers\ReclamationController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\ReservationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,8 +29,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::group([], function() {
-    Route::get('all-services' , [PagesController::class , 'all_services']);
-    Route::get('single-service' , [PagesController::class , 'single_service']);
+    Route::get('all-services' , [PagesController::class , 'all_services'])->name('all-services');
+    
+    // _______________affichage de detaille de service dans les page d'acceuile________
+    
+    Route::get('single-service/{id}' , [ServiceController::class , 'show']);
     Route::get('services/data' , [PagesController::class , 'services_data']);
 
 });
@@ -128,5 +132,8 @@ Route::middleware(['auth', 'role:client'])->group(function () {
 
       // ___________create une review , insert into review________________
       Route::post('/client/review' , [ReviewController::class , 'createReiew'])->name('client.addReview');
+
+    //   ________________craection de reservation ________________
+    Route::post('/all-services' , [ReservationController::class , 'createReservation'])->name('reservation.create');
   
 });
