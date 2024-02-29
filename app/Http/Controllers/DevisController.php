@@ -46,16 +46,16 @@ public function generate(Request $request)
 
     $pdf = Pdf::loadView('devis', $data);
 
-    // Save PDF to storage for attachment
+    # Save PDF to storage for attachment
     $pdfPath = storage_path('app/public/devis.pdf');
     $pdf->save($pdfPath);
 
-    // Send email with PDF attachment
-//    Mail::send([], [], function($message) use ($pdfPath, $client_email) {
-//        $message->to($client_email)
-//            ->subject('Your Devis')
-//            ->attach($pdfPath);
-//    });
+    # Send email with PDF attachment
+    Mail::send([], [], function($message) use ($pdfPath, $client_email) {
+        $message->to($client_email)
+            ->subject('Your Devis')
+            ->attach($pdfPath);
+    });
 
     # Option 1) display the PDF in the browser
     return $pdf->stream();
