@@ -60,10 +60,14 @@
                     </tbody>
                 </table>
             </div>
-            <div class="footer mt-8 ">
-                <p class="mb-4 ">Date:{{ $data['current_time'] }}</p>
-                <p class="mt-5">Authorized Signature: <input type="text" name="signature"
-                        class="border border-black pr-3"></p>
+            <div class="flex items-center justify-between mt-10">
+                <div>
+                    <img src="/img/BrecoleMe_Stamp.png" alt="Company Stamp" class="h-40">
+                </div>
+                <div class="text-right">
+                    <p class="text-gray-700 mb-2">Date: {{ $data['current_time'] }}</p>
+                    <p class="text-gray-700">Authorized Signature: <input type="text" name="signature" class="border border-gray-400 px-2 py-1"></p>
+                </div>
             </div>
         </div>
 

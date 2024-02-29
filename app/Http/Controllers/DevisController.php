@@ -43,6 +43,7 @@ public function generate(Request $request)
         'signature' => $signature,
     ];
 
+
     $pdf = Pdf::loadView('devis', $data);
 
     // Save PDF to storage for attachment
@@ -50,11 +51,11 @@ public function generate(Request $request)
     $pdf->save($pdfPath);
 
     // Send email with PDF attachment
-    Mail::send([], [], function($message) use ($pdfPath, $client_email) {
-        $message->to($client_email)
-            ->subject('Your Devis')
-            ->attach($pdfPath);
-    });
+//    Mail::send([], [], function($message) use ($pdfPath, $client_email) {
+//        $message->to($client_email)
+//            ->subject('Your Devis')
+//            ->attach($pdfPath);
+//    });
 
     # Option 1) display the PDF in the browser
     return $pdf->stream();

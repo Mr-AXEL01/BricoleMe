@@ -38,22 +38,29 @@
             </tr>
             </thead>
             <tbody>
-            
+
                 <tr>
                     <td>{{ $service_name}}</td>
                     <td>{{ $service_price}}</td>
                     <td>{{ $dure}}</td>
                     <td>{{ $tarif_totale}}</td>
                 </tr>
-           
+
             </tbody>
         </table>
     </div>
-    <div class="footer text-left">
-        {{-- <p>Authorized Signature :</p> --}}
-        <p><strong> <i> {{ $signature}}</i></strong></p>
-        <p>Date:{{ $current_time}}</p>
+    <div class="footer-container">
+        <div class="stamp-container">
+            <img src="/public/img/BrecoleMe_Stamp.png" alt="Company Stamp" class="stamp">
+        </div>
+
+        <div class="footer text-left">
+            {{-- <p>Authorized Signature :</p> --}}
+            <p><strong> <i> {{ $signature}}</i></strong></p>
+            <p>Date:{{ $current_time}}</p>
+        </div>
     </div>
+
 </div>
 </body>
 </html>
