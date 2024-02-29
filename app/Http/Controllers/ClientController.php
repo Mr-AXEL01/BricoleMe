@@ -41,6 +41,7 @@ class ClientController extends Controller
     }
 
     public function profile() {
+        
         return view('client.profile');
     }
 }
