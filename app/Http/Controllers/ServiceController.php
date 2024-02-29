@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Service;
+use App\Models\Review;
 
 class ServiceController extends Controller
 {
@@ -59,5 +60,26 @@ class ServiceController extends Controller
         $service->delete();
 
         return response()->json(['message' => 'Service deleted successfully'], 200);
+    }
+
+    // _____________________show detaills of service________________
+
+    public function show($id){
+        
+        $service = Service::findOrFail($id);
+        
+        $artisanId = $service->artisan->id;
+        $ratings = Review::join('reservations', 'reviews.reservation_id', '=', 'reservations.id')
+                     ->join('services', 'reservations.service_id', '=', 'services.id')
+                     ->where('artisan_id',$artisanId )
+                     ->get();
+
+       // Calcul de la moyenne des évaluations
+        $avgRating = $ratings->avg('rating');
+        
+        // Arrondir la moyenne à l'entier le plus proche
+        $avgRating = round($avgRating);
+        // dd($avgRating);
+         return view('pages.single-service', ['service' => $service , 'avgRating' => $avgRating]);
     }
 }

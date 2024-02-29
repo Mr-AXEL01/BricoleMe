@@ -72,6 +72,15 @@
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="../js/artisan.js"></script>
+    <script>
+        // Masquer le message de succès après 3 secondes
+        setTimeout(function() {
+            var successAlert = document.getElementById('success-alert');
+            if (successAlert) {
+                successAlert.style.display = 'none';
+            }
+        }, 3000); // 3000 millisecondes = 3 secondes
+    </script>
 </body>
 
 </html>

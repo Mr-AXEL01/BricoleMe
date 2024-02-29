@@ -165,34 +165,35 @@
     <div class="container mx-auto">
         <div class="text-gray-600 my-10">
             <i class="fa-solid fa-house"></i>
-            <span> / page / single-service</span>
+            <span>detaille de service</span>
         </div>
         <div class="inline-flex items-start flex-wrap w-full ">
             <div class="flex-1 min-w-[480px] lg:mx-[120px] p-4">
                 <header>
-                    <h2 class="text-4xl font-bold mb-3">title for service</h2>
+                    <h2 class="text-4xl font-bold mb-3">{{$service->name}} / {{$service->tarif}} dh</h2>
                     <div class="flex items-center gap-1">
                         <span>Rating : </span>
+                       
                         <div class="text-yellow-400">
+                            @for($i = 0 ; $i < $avgRating ; $i++)
                             <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
+                           @endfor
                         </div>
                     </div>
                 </header>
                 <div class="my-4 flex items-center gap-5">
-                    <img src="{{ asset('img/unnamed.png') }}" alt="" class="w-[100px] h-[100px] border-4 border-yellow-400 rounded-full">
+                    <img src="{{ asset('/storage/userPics/' .$service->artisan->user->picture) }}" alt="" class="w-[100px] h-[100px] border-4 border-yellow-400 rounded-full">
                     <div>
-                        <h5 class="text-2xl font-semibold">name of artisan </h5>
+                        <h5 class="text-2xl font-semibold">{{$service->artisan->user->name}}</h5>
                         <div class="flex items-center my-3 text-gray-400"
                         >
                         <div class="mr-2">
                             <i class="fa-solid fa-location-dot"></i>
-                            <span class="text-gray-900">Location</span>
+                            <span class="text-gray-900">{{$service->artisan->user->city}}</span>
                         </div>
                         <div>
                             <i class="fa-solid fa-message"></i>
-                            <span class="text-gray-900">J'ai parle francais , anglaise</span>
+                            <span class="text-gray-900">{{$service->artisan->description}}</span>
                         </div>
                     </div>
                     <button class="block border border-gray-300 py-1.5 px-6">
@@ -205,16 +206,12 @@
                 <!-- Additional required wrapper -->
                 <div class="swiper-wrapper">
                     <!-- Slides -->
-                    <div class="swiper-slide"><img src="{{ asset('img/cleaning.jpg') }}" alt="" class="w-full">
-                    </div><div class="swiper-slide"><img src="{{ asset('img/cleaning.jpg') }}" alt="" class="w-full">
-                    </div><div class="swiper-slide"><img src="{{ asset('img/cleaning.jpg') }}" alt="" class="w-full">
-                    </div><div class="swiper-slide"><img src="{{ asset('img/cleaning.jpg') }}" alt="" class="w-full">
+                    <div class="swiper-slide"><img src="{{ asset('/storage/userPics/' .$service->picture) }}" alt="" class="w-full">
                     </div>
 
-                    ...
                 </div>
                 <!-- If we need pagination -->
-                <div class="swiper-pagination"></div>
+                {{-- <div class="swiper-pagination"></div> --}}
 
                 <!-- If we need navigation buttons -->
                 <button class="next bg-white h-8 w-8 shadow absolute top-[50%] right-0 translate-y-[-50%] rounded-full z-50">
@@ -232,43 +229,37 @@
 
             <div>
                 <h4 class="text-xl my-2 font-semibold">a propos de service</h4>
-                <p class="text-gray-600 max-h-[350px]">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores ducimus fuga natus vitae voluptates. Consequatur
-                    excepturi
-                    modi
-                    nesciunt praesentium
-                    quod
-                    sapiente tempora voluptates.</p>
+                <p class="text-gray-600 max-h-[350px]">{{$service->description}}</p>
             </div>
         </div>
         @role('client')
             <div class="bg-[#f1f5f6] w-full  xl:max-w-[30%] p-4">
                 <h1 class="text-2xl font-semibold mb-6">Cart</h1>
 
-                <div class="relative overflow-x-auto">
+                <div class="relative overflow-x-hidden">
                     <table class="w-full text-sm text-left rtl:text-right text-gray-500">
                         <thead class="text-xs text-gray-700 uppercase bg-yellow-400">
                         <tr>
-                            <th scope="col" class="px-3 py-3 ">
-                                Service name
+                           
+                            <th scope="col" class="px-6 py-3">
+                                date depart
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Artisan name
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Price
+                                date final
                             </th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr class="bg-white text-gray-900">
 
-                            <td class="px-6 py-4">
-                                Plumbing
-                            </td><td class="px-6 py-4">
-                                Abdelhak
+                            <form action="{{route('reservation.create')}}" method="post">
+                                @csrf
+
+                            <td class="px-6 py-4  ">
+                            <input min="{{ now()->timezone('Africa/Casablanca')->addDay()->format('Y-m-d') }}" max="{{ now()->timezone('Africa/Casablanca')->addMonth()->format('Y-m-d') }}" type="date" name="dateDepart">
                             </td>
                             <td class="px-6 py-4  ">
-                                650 dh
+                                <input min="{{ now()->timezone('Africa/Casablanca')->addDay()->format('Y-m-d') }}" max="{{ now()->timezone('Africa/Casablanca')->addMonth()->format('Y-m-d') }}" type="date" name="dateFinale">
                             </td>
 
                         </tr>
@@ -277,11 +268,8 @@
                     </table>
                 </div>
                 <div class="my-6 inline-flex justify-end gap-2 w-full">
-                    <form action="" method="post">
-                        @csrf
-                        <input type="hidden" name="id_service" value="id_service">
-                        <input type="hidden" name="id_artisan" value="id_service">
-                        <input type="hidden" name="id_client" value="id_service">
+                   
+                        <input type="hidden" name="service_id" value="{{$service->id}}">
                         <button type="submit" class="bg-neutral-800 text-yellow-400 px-8 py-2 ">Reserve</button>
                     </form>
                 </div>
