@@ -49,7 +49,9 @@ Route::middleware('auth')->group(function () {
 
 
 //    ----------devis------------------
-    Route::get('/devis/{id}', [DevisController::class, 'generate'])->name('client.download');
+    
+    Route::get('/devisSignature/{id}', [DevisController::class, 'signature'])->name('client.signature');
+    Route::post('/devis', [DevisController::class, 'generate'])->name('client.download');
 
 //    --------------chat----------------
     Route::get('/chat/{user_id}',[ChatController::class , 'chatForm'])->name('chatForm');
@@ -113,7 +115,7 @@ Route::middleware(['auth', 'role:client'])->group(function () {
     Route::get('/client/destroy/{id}', [ClientController::class, 'destroy'])->name('client.destroy');
 
      // ___________client cancel reservarion______________
-     Route::get('/client/profile' , [ClientController::class , 'profile'])->name('reservation');
+     Route::get('/client/profile' , [ClientController::class , 'profile'])->name('profile');
     
                 // ==================reclamation controller=================
     //  _______page des reclamation___________

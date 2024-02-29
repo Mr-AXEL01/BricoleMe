@@ -37,7 +37,7 @@ class ClientController extends Controller
     public function destroy($id) {
         $reservation = Reservation::find($id);
         $reservation->delete();
-        return redirect()->route('reservation');
+        return redirect()->route('reservation')->with('success', 'Reservation cancel successfully');
     }
 
     public function profile() {

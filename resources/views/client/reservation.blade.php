@@ -27,7 +27,7 @@
                                 </a>
 
                                 {{-- devis download --}}
-                                <a href="{{ route('client.download', ['id' => $reserv->id]) }} " class="right-0 mt-4 ">
+                                <a href="{{ route('client.signature', ['id' => $reserv->id]) }} " class="right-0 mt-4 ">
 
                                     <button class="download-button">
                                         <div class="docs">
@@ -55,6 +55,7 @@
 
 
                                 </a>
+                                {{-- devis-download-end --}}
 
                                 <img src="{{asset('/storage/userPics/'. $reserv->service->picture)}}"
                                     class="h-32 rounded-lg w-full object-cover">
