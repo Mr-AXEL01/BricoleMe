@@ -32,22 +32,27 @@
             <thead>
             <tr>
                 <th>Service</th>
-                <th>Price</th>
+                <th>Price/heur</th>
+                <th>dure</th>
+                <th>tarif Totale</th>
             </tr>
             </thead>
             <tbody>
-            @foreach($services as $service)
+            
                 <tr>
-                    <td>{{ $service['name'] }}</td>
-                    <td>{{ $service['priceTotal'] }}</td>
+                    <td>{{ $service_name}}</td>
+                    <td>{{ $service_price}}</td>
+                    <td>{{ $dure}}</td>
+                    <td>{{ $tarif_totale}}</td>
                 </tr>
-            @endforeach
+           
             </tbody>
         </table>
     </div>
-    <div class="footer">
-        <p>Authorized Signature: ________________________</p>
-        <p>Date: ________________________</p>
+    <div class="footer text-left">
+        {{-- <p>Authorized Signature :</p> --}}
+        <p><strong> <i> {{ $signature}}</i></strong></p>
+        <p>Date:{{ $current_time}}</p>
     </div>
 </div>
 </body>
