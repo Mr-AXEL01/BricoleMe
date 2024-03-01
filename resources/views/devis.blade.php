@@ -51,7 +51,7 @@
     </div>
     <div class="footer-container">
         <div class="stamp-container">
-            <img src="../../public/img/BrecoleMe_Stamp.png" alt="Company Stamp" class="stamp">
+            <img src="{{ asset('img/BrecoleMe_Stamp.png') }}" alt="Company Stamp" class="stamp">
         </div>
 
         <div class="footer text-left">

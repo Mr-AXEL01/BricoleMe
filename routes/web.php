@@ -58,7 +58,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/chat/{user_id}', [ChatController::class, 'sendMessage'])->name('sendMessage');
 });
 // Admin Ressources
-Route::middleware('auth', 'role:admin')->group(function () {
+Route::middleware('auth', 'role:admin', 'suspended')->group(function () {
     Route::get('/admin/dashboard' , [AdminController::class , 'dashboard']);
     Route::get('/admin/users' , [AdminController::class , 'users']);
 
@@ -70,7 +70,8 @@ Route::middleware('auth', 'role:admin')->group(function () {
     
       
     Route::put('/admin/claimsAccept/{id}' , [ReclamationController::class , 'accepetedClaims'])->name('admin.claims-accepted');
-
+    Route::delete('/admin/user/{userId}/delete', [AdminController::class, 'delete'])->name('admin.users.delete');
+    Route::post('/admin/users/{userId}/suspend', [AdminController::class, 'suspendUser'])->name('admin.users.suspend');
 
 });
 
@@ -84,7 +85,7 @@ require __DIR__.'/auth.php';
 
 // artisan resources
 
-Route::middleware(['auth', 'role:artisan'])->group(function () {
+Route::middleware(['auth', 'role:artisan', 'suspended'])->group(function () {
     Route::get('/artisan/dashboard' , function () {
         return view('artisan.dashboard');
     })->name('artisan.dashboard');
@@ -108,7 +109,7 @@ Route::middleware(['auth'])->group(function () {
 
 // ==================================client routes================================
 
-Route::middleware(['auth', 'role:client'])->group(function () {
+Route::middleware(['auth', 'role:client', 'suspended'])->group(function () {
     Route::get('/client/reservation' , [ClientController::class , 'reservation'])->name('reservation');
     
         // ___________client cancel reservarion______________
@@ -139,3 +140,8 @@ Route::middleware(['auth', 'role:client'])->group(function () {
     Route::post('/all-services' , [ReservationController::class , 'createReservation'])->name('reservation.create');
   
 });
+
+
+Route::get('/suspended', function () {
+    return view('suspended');
+})->name('suspended');

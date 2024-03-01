@@ -57,51 +57,51 @@
                                     </tr>
                                     </thead>
                                     <tbody class="bg-white divide-y divide-orange-200 " id="users-container">
-                                    <tr>
-                                        <td>id</td>
-                                        <td>photo</td>
-                                        <td>admin</td>
-                                        <td>test@test.com</td>
-                                        <td>role</td>
-                                        <td>24/12/2024</td>
-                                        <td>24/12/2024</td>
-                                        <td>delete</td>
-                                    </tr>
-{{--                                    @foreach($users as $user)--}}
-{{--                                        <tr>--}}
-{{--                                            <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">{{ $user->id }}</td>--}}
-{{--                                            <td class="px-12 py-4 text-sm font-medium whitespace-nowrap">--}}
-{{--                                                <div><img src="{{ asset('/assets/uploads/' . $user->picture) }}" alt="" class="w-8 h-8 rounded-full"></div>--}}
-{{--                                            </td>--}}
-{{--                                            <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">{{ $user->name }}</td>--}}
-{{--                                            <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">{{ $user->email }}</td>--}}
-{{--                                            <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">--}}
-{{--                                                @if($user->admin)--}}
-{{--                                                    <div class="text-sm text-rose-500 bg-rose-500/20 w-fit px-4 py-1 rounded-2xl">admin</div>--}}
-{{--                                                @elseif($user->passenger)--}}
-{{--                                                    <div class="text-sm text-green-500 bg-green-400/20 w-fit px-4 py-1 rounded-2xl">Passenger</div>--}}
-{{--                                                @else--}}
-{{--                                                    <div class="text-sm text-blue-500 bg-blue-400/20 w-fit px-4 py-1 rounded-2xl">Driver</div>--}}
-{{--                                                @endif--}}
-{{--                                            </td>--}}
-{{--                                            <td class="px-4 py-4 text-sm whitespace-nowrap">{{ $user->created_at->format('d-m-Y') }}</td>--}}
-{{--                                            <td class="px-4 py-4 text-sm whitespace-nowrap">{{ $user->updated_at->format('d-m-Y') }}</td>--}}
-{{--                                            <td class="px-4 py-4 text-sm whitespace-nowrap text-center">--}}
-{{--                                                <a class="px-2 py-2 bg-rose-600  w-fit transition-colors duration-200 rounded-lg block cursor-pointer hover:bg-red-500--}}
-{{--                                                confirmation-link" href="{{ url--}}
-{{--                                                ('/admin/user/delete', $user->id ) }}"--}}
-{{--                                                >--}}
-{{--                                                    <svg class="w-4 h-4 text-white pointer-events-none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"--}}
-{{--                                                         viewBox="0 0 18 20">--}}
-{{--                                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"--}}
-{{--                                                              d="M1 5h16M7 8v8m4-8v8M7 1h4a1 1 0 0 1 1 1v3H6V2a1 1 0 0 1 1-1ZM3 5h12v13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5Z"/>--}}
-{{--                                                    </svg>--}}
+                                    @foreach($users as $user)
+                                        <tr>
+                                            <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">{{ $user->id }}</td>
+                                            <td class="px-12 py-4 text-sm font-medium whitespace-nowrap">
+                                                <div><img src="{{ asset('storage/userPics/' . $user->picture) }}" alt="" class="w-8 h-8 rounded-full"></div>
+                                            </td>
+                                            <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">{{ $user->name }}</td>
+                                            <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">{{ $user->email }}</td>
+                                            <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
+                                                @if($user->hasRole('admin'))
+                                                    <div class="text-sm text-rose-500 bg-rose-500/20 w-fit px-4 py-1 rounded-2xl">admin</div>
+                                                @elseif($user->hasRole('artisan'))
+                                                    <div class="text-sm text-green-500 bg-green-400/20 w-fit px-4 py-1 rounded-2xl">Artisan</div>
+                                                @else
+                                                    <div class="text-sm text-blue-500 bg-blue-400/20 w-fit px-4 py-1 rounded-2xl">Client</div>
+                                                @endif
+                                            </td>
+                                            <td class="px-4 py-4 text-sm whitespace-nowrap">{{ $user->created_at->format('d-m-Y') }}</td>
+                                            <td class="px-4 py-4 text-sm whitespace-nowrap">{{ $user->updated_at->format('d-m-Y') }}</td>
+                                            <td class="flex  gap-2 px-4 py-4 text-sm whitespace-nowrap text-center">
+                                                <form action="{{ route('admin.users.delete', $user->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this user?');">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="px-2 py-2 bg-rose-600  w-fit transition-colors duration-200 rounded-lg block cursor-pointer hover:bg-red-500">
+                                                        <svg class="w-5 h-5 text-white pointer-events-none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
+                                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h16M7 8v8m4-8v8M7 1h4a1 1 0 0 1 1 1v3H6V2a1 1 0 0 1 1-1ZM3 5h12v13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5Z"/>
+                                                        </svg>
+                                                    </button>
+                                                </form>
+                                                <form action="{{ route('admin.users.suspend', $user->id) }}" method="POST">
+                                                    @csrf
+                                                    @if ($user->isSuspended())
+                                                        <button type="submit" class="px-2 py-2 bg-green-600 w-fit transition-colors duration-200 rounded-lg block cursor-pointer hover:bg-green-500 confirmation-link">
+                                                            <i class="fa-solid fa-user-check" style="color: #ffffff;"></i>
+                                                        </button>
+                                                    @else
+                                                        <button type="submit" class="px-2 py-2 bg-yellow-600 w-fit transition-colors duration-200 rounded-lg block cursor-pointer hover:bg-yellow-500 confirmation-link">
+                                                            <i class="fa-solid fa-user-slash" style="color: #ffffff;"></i>
+                                                        </button>
+                                                    @endif
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
 
-{{--                                                </a>--}}
-
-{{--                                            </td>--}}
-{{--                                        </tr>--}}
-{{--                                    @endforeach--}}
                                     </tbody>
                                 </table>
                             </div>
