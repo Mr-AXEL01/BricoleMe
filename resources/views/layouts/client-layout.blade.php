@@ -52,13 +52,21 @@
                 </a>
 
                 <a href="/client/profile"
-                class="text-sm font-medium text-gray-700 py-3 px-2 hover:bg-teal-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out">
-                <svg class="w-6 h-6 fill-current inline-block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                    <circle cx="10" cy="5" r="5" fill="none" stroke="currentColor" stroke-width="2"></circle>
-                    <path d="M16 16c-2.667 0-5.333-2-8-6s-3.333-6-3.333-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
-                </svg>
-                <span class="">Profile</span>
-            </a>
+                    class="text-sm font-medium text-gray-700 py-3 px-2 hover:bg-teal-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out">
+                    <svg class="w-6 h-6 fill-current inline-block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                        <circle cx="10" cy="5" r="5" fill="none" stroke="currentColor" stroke-width="2"></circle>
+                        <path d="M16 16c-2.667 0-5.333-2-8-6s-3.333-6-3.333-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+                    </svg>
+                    <span class="">Profile</span>
+                </a>
+                <a href="/chatty" class="text-sm font-medium text-gray-700 py-4 px-2 hover:bg-teal-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out">
+                    <svg class="w-6 h-6 fill-current inline-block" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z"></path>
+                    <path
+                        d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z"></path>
+                    </svg>
+                    <span class="">Messages</span>
+                </a>
 
 
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AblyController;
 use App\Http\Controllers\ChatController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
@@ -145,3 +146,9 @@ Route::middleware(['auth', 'role:client', 'suspended'])->group(function () {
 Route::get('/suspended', function () {
     return view('suspended');
 })->name('suspended');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/chatty', [AblyController::class, 'chat']);
+    Route::post('/send-message', [AblyController::class, 'sendMessage'])->name('sendMessage');
+    Route::get('/getMessages/{recipientId}', [AblyController::class, 'getMessages'])->name('getMessages');
+});
