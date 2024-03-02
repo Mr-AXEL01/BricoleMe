@@ -374,7 +374,7 @@
         </div>
     </div>
 
-    <div id="popup_notify" class="absolute bottom-[6%]  right-[3%] transition-all duration-500  bg-white rounded-md min-w-[300px] p-5">
+    <div id="popup_notify" class="absolute bottom-[-300%] opacity-0 invisible right-[3%] transition-all duration-500  bg-white rounded-md min-w-[300px] p-5">
 
         <div class="inline-flex items-center gap-4">
             <i class="fa-solid fa-bell text-[40px] text-green-400"></i>
@@ -404,9 +404,9 @@
     })
     $(document).ready(function () {
         function fetchNotification(data) {
+            $('#wrapper_notify').html('');
             data.map((notification, index) => {
                 let imageUrl = "{{ asset('storage/userPics') }}" + '/' + notification.data.picture;
-                console.log(imageUrl)
                 $('#wrapper_notify').append(`
                   <div class="flex items-start p-5 gap-2 relative" key="${index}">
                      <img src="${imageUrl}" alt="photoclient" class="h-12 w-12 rounded-full">
@@ -428,13 +428,14 @@
             `);
             })
         }
+        var prevCount = 0;
+
         function checkNotification() {
             const endpoint = '/artisan/notification';
             $.ajax({
                 method: 'GET',
                 url: endpoint,
                 success: function (response) {
-                    $('#wrapper_notify').html('');
                     let notifications = response.notifications
                     for ( i = 0 ; i < notifications.length ; i++) {
                         notifications[i].data = JSON.parse(notifications[i].data)
@@ -458,15 +459,22 @@
                     }
                     fetchNotification(notifications);
                     $('#count_notify').html('');
-                    if (response.countNotification > 0) {
+
+                    if (response.countNotification) {
                         $('#count_notify').removeClass('hidden')
                         $('#count_notify').append(`
                         <strong>${response.countNotification}</strong>
                     `)
-                        setTimeout(closePopupNotify(), 4000);
+                        if (prevCount < response.countNotification) {
+                            console.log(true)
+                            openPopupNotify();
+                            setTimeout(closePopupNotify, 10000);
+                            prevCount = response.countNotification;
+                        }else {
+                            console.log(false)
+                        }
                     }else{
                         $('#count_notify').addClass('hidden')
-
                     }
 
                 },
@@ -491,12 +499,13 @@
                 data : {id : notificationId},
                 success : function (response) {
                     let notifications = response.notifications
-                    fetchNotification(notifications);
+                        fetchNotification(notifications);
                     $('#count_notify').html('');
                     if (response.countNotification > 0) {
                         $('#count_notify').removeClass('hidden')
                         $('#count_notify').append(`
                         <strong>${response.countNotification}</strong>
+
                     `)
                     }else{
                         $('#count_notify').addClass('hidden')
@@ -509,7 +518,6 @@
         })
         checkNotification();
         setInterval(checkNotification, 3000 );
-        setTimeout(closePopupNotify, 1500);
 
     });
     // =========== Hidden Notification container when outside wrapper ====== !
@@ -525,6 +533,14 @@
             popup_notify.classList.add('opacity-0' , 'invisible');
             popup_notify.classList.remove('bottom-[6%]');
             popup_notify.classList.add('bottom-[-300%]');
+        }
+    }
+    function openPopupNotify() {
+        const popup_notify = document.getElementById('popup_notify');
+        if(popup_notify.classList.contains('bottom-[-300%]')) {
+            popup_notify.classList.remove('opacity-0' , 'invisible');
+            popup_notify.classList.add('bottom-[6%]');
+            popup_notify.classList.remove('bottom-[-300%]');
         }
     }
 </script>
