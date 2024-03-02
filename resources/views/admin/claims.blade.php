@@ -77,7 +77,7 @@
                                                     {{ $reclamation->id }}</td>
                                                 <td class="px-12 py-4 text-sm font-medium whitespace-nowrap">
                                                     <div><img
-                                                            src="{{ asset('/public/pics/' . $reclamation->reservation->service->artisan->user->picture) }}"
+                                                            src="{{ asset('/storage/userPics/' . $reclamation->reservation->service->artisan->user->picture) }}"
                                                             alt="" class="w-8 h-8 rounded-full"></div>
                                                 </td>
                                                 <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
