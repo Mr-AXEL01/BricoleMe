@@ -168,7 +168,6 @@
 
                 function toggleFullscreen() {
                     if (document.fullscreenElement) {
-
                         document.exitFullscreen();
                     } else {
 
