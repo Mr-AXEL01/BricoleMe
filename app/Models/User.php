@@ -3,7 +3,10 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -19,6 +22,10 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $guarded = [];
+
+    protected $dates = [
+        'suspended_until'=> 'datetime'
+    ];
 
 
     /**
@@ -51,5 +58,10 @@ class User extends Authenticatable
 
     public function admin() {
         return $this->hasOne(Admin::class);
+    }
+
+    public function isSuspended()
+    {
+        return $this->suspended && $this->suspended_until && Carbon::now()->gt($this->suspended_until);
     }
 }

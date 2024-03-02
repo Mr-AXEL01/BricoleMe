@@ -232,7 +232,7 @@
                 <p class="text-gray-600 max-h-[350px]">{{$service->description}}</p>
             </div>
         </div>
-        @role('client')
+        @unlessrole('artisan')
             <div class="bg-[#f1f5f6] w-full  xl:max-w-[30%] p-4">
                 <h1 class="text-2xl font-semibold mb-6">Cart</h1>
 
@@ -274,7 +274,7 @@
                     </form>
                 </div>
             </div>
-        @endrole
+        @endunlessrole
     </div>
     </div>
 

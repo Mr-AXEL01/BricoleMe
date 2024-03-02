@@ -1326,7 +1326,7 @@ video {
 /* __________________________style de pending logo dans reclamation page________________ */
 
 .loader {
-  width: 180px;
+  width: 80px;
   height: 50px;
   position: relative;
 }
@@ -1343,7 +1343,7 @@ video {
 }
 
 .load {
-  background-color: #4bed39;
+  background-color: #a8a4a4;
   border-radius: 50px;
   display: block;
   height: 16px;
@@ -1359,7 +1359,7 @@ video {
   content: "";
   width: 100%;
   height: 100%;
-  background-color: #0f7905;
+  background-color: #555353;
   border-radius: inherit;
   animation: loading2_713 3.5s ease both infinite;
 }

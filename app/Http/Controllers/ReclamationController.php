@@ -28,7 +28,8 @@ class ReclamationController extends Controller
     // ________________function pour affichage des reclamation pour client___________________
     
     public function reclamation() {
-        $reclamations = Reclamation::where('client_id', auth()->user()->client->id)->get();
+        $reclamations = Reclamation::join('reservations', 'reclamations.reservation_id','=', 'reservations.id')
+         ->where('client_id', auth()->user()->client->id)->get();
         
 
         return view('client.reclamation',['reclamations' => $reclamations]);
