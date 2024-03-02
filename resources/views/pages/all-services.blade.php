@@ -115,11 +115,11 @@
             <div class="grid gap-5 grid-cols-1 lg:grid-cols-4" id="container_services">
                 <!--- Card Service --->
                     {{-- @foreach($services as $service)
-                        
+
 
                     @endforeach --}}
 
-                    
+
 
             </div>
         </div>
@@ -243,7 +243,7 @@
                     $('#container_services').append(`
                     <div class="w-full id='${index}' shadow overflow-hidden">
                         <a href="/single-service/${service.id}">
-                            
+
                             <div class="max-h-[200px] overflow-hidden rounded-lg">
                                 <img src="/storage/userPics/${service.picture}" class="h-full max-h-64">
                             </div>
@@ -272,19 +272,18 @@
         })
     })
 
-   
-    // Fonction pour masquer les alertes après 3 secondes
+
     setTimeout(function() {
         var successAlert = document.getElementById('success-alert');
         var errorAlert = document.getElementById('error-alert');
-        
+
         if (successAlert) {
             successAlert.style.display = 'none';
         }
-        
+
         if (errorAlert) {
             errorAlert.style.display = 'none';
         }
-    }, 3000); // 3000 millisecondes = 3 secondes
+    }, 3000);
 
 </script>

@@ -173,7 +173,7 @@
                     <h2 class="text-4xl font-bold mb-3">{{$service->name}} / {{$service->tarif}} dh</h2>
                     <div class="flex items-center gap-1">
                         <span>Rating : </span>
-                       
+
                         <div class="text-yellow-400">
                             @for($i = 0 ; $i < $avgRating ; $i++)
                             <i class="fa-solid fa-star"></i>
@@ -240,7 +240,7 @@
                     <table class="w-full text-sm text-left rtl:text-right text-gray-500">
                         <thead class="text-xs text-gray-700 uppercase bg-yellow-400">
                         <tr>
-                           
+
                             <th scope="col" class="px-6 py-3">
                                 date depart
                             </th>
@@ -256,10 +256,10 @@
                                 @csrf
 
                             <td class="px-6 py-4  ">
-                            <input min="{{ now()->timezone('Africa/Casablanca')->addDay()->format('Y-m-d') }}" max="{{ now()->timezone('Africa/Casablanca')->addMonth()->format('Y-m-d') }}" type="date" name="dateDepart">
+                            <input required min="{{ now()->timezone('Africa/Casablanca')->addDay()->format('Y-m-d') }}" max="{{ now()->timezone('Africa/Casablanca')->addMonth()->format('Y-m-d') }}" type="date" name="dateDepart">
                             </td>
                             <td class="px-6 py-4  ">
-                                <input min="{{ now()->timezone('Africa/Casablanca')->addDay()->format('Y-m-d') }}" max="{{ now()->timezone('Africa/Casablanca')->addMonth()->format('Y-m-d') }}" type="date" name="dateFinale">
+                                <input required  min="{{ now()->timezone('Africa/Casablanca')->addDay()->format('Y-m-d') }}" max="{{ now()->timezone('Africa/Casablanca')->addMonth()->format('Y-m-d') }}" type="date" name="dateFinale">
                             </td>
 
                         </tr>
@@ -268,7 +268,7 @@
                     </table>
                 </div>
                 <div class="my-6 inline-flex justify-end gap-2 w-full">
-                   
+
                         <input type="hidden" name="service_id" value="{{$service->id}}">
                         <button type="submit" class="bg-neutral-800 text-yellow-400 px-8 py-2 ">Reserve</button>
                     </form>
