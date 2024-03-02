@@ -30,9 +30,9 @@ Route::get('/', function () {
 });
 Route::group([], function() {
     Route::get('all-services' , [PagesController::class , 'all_services'])->name('all-services');
-    
+
     // _______________affichage de detaille de service dans les page d'acceuile________
-    
+
     Route::get('single-service/{id}' , [ServiceController::class , 'show']);
     Route::get('services/data' , [PagesController::class , 'services_data']);
 
@@ -61,12 +61,12 @@ Route::group([] , function () {
     Route::get('/admin/users' , [AdminController::class , 'users']);
 
     // _______________affichage des reclamation pour admin________________
-    
+
     Route::get('/admin/claims' , [ReclamationController::class , 'reclamationAdmin'])->name('admin.claims');
-    
+
     // ________________accepte de reclamation___________________
-    
-      
+
+
     Route::put('/admin/claimsAccept/{id}' , [ReclamationController::class , 'accepetedClaims'])->name('admin.claims-accepted');
 
 
@@ -81,7 +81,8 @@ require __DIR__.'/auth.php';
 
 
 // artisan resources
-
+Route::get('artisan/notification' , [ArtisanController::class , 'notificationArtisan'] );
+Route::post('/notify/read' , [ArtisanController::class , 'readNotification'] );
 Route::middleware(['auth', 'role:artisan'])->group(function () {
     Route::get('/artisan/dashboard' , function () {
         return view('artisan.dashboard');
@@ -108,23 +109,23 @@ Route::middleware(['auth'])->group(function () {
 
 Route::middleware(['auth', 'role:client'])->group(function () {
     Route::get('/client/reservation' , [ClientController::class , 'reservation'])->name('reservation');
-    
+
         // ___________client cancel reservarion______________
     Route::get('/client/destroy/{id}', [ClientController::class, 'destroy'])->name('client.destroy');
 
      // ___________client cancel reservarion______________
      Route::get('/client/profile' , [ClientController::class , 'profile'])->name('reservation');
-    
+
                 // ==================reclamation controller=================
     //  _______page des reclamation___________
     Route::get('/client/reclamation' , [ReclamationController::class , 'reclamation'])->name('reclamation');
-    
+
     //  _______page de  Forme de reclamation avec id de reservation___________
     Route::get('/client/reclamation-forme/{id}' , [ReclamationController::class , 'reclamationForme'])->name('client.reclamation-forme');
-    
+
     // ___________create une reclamation , insert into reaclamation___________
     Route::post('/client/reclamer' , [ReclamationController::class , 'createReclamation'])->name('client.reclamer');
-    
+
                 // ==================review controller=====================
 
                  //  _______page de  Forme de review avec id de reservation___________
@@ -135,5 +136,5 @@ Route::middleware(['auth', 'role:client'])->group(function () {
 
     //   ________________craection de reservation ________________
     Route::post('/all-services' , [ReservationController::class , 'createReservation'])->name('reservation.create');
-  
+
 });
