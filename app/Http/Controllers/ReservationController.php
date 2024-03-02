@@ -9,7 +9,6 @@ use App\Models\Client;
 use App\Notifications\ServiceReservedNotify;
 use Illuminate\Http\Request;
 use App\Models\Reservation;
-use App\Models\Service;
 
 class ReservationController extends Controller
 {
@@ -31,7 +30,7 @@ class ReservationController extends Controller
                                            ->where('client_id', $clientId)
                                            ->exists();
 
-    
+
         $service = Service::find($serviceId);
         $tarif = $service->tarif;
         $tarifTotal = tarifTotal($dateDepart, $dateFinale, $tarif);
