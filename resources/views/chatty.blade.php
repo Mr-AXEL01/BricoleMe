@@ -6,6 +6,8 @@
         <title>Private Messaging</title>
         <script lang="text/javascript" src="https://cdn.ably.com/lib/ably.min-1.js"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel = "stylesheet" href = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+        <script src = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
 
         <style>
             .message {
@@ -39,33 +41,33 @@
             }
 
             .comic-button {
-  display: inline-block;
-  padding: 10px 20px;
-  font-size: 24px;
-  font-weight: bold;
-  text-align: center;
-  text-decoration: none;
-  color: #fff;
-  background-color: #ff5252;
-  border: 2px solid #000;
-  border-radius: 10px;
-  box-shadow: 5px 5px 0px #000;
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
+                display: inline-block;
+                padding: 10px 20px;
+                font-size: 24px;
+                font-weight: bold;
+                text-align: center;
+                text-decoration: none;
+                color: #fff;
+                background-color: #ff5252;
+                border: 2px solid #000;
+                border-radius: 10px;
+                box-shadow: 5px 5px 0px #000;
+                transition: all 0.3s ease;
+                cursor: pointer;
+            }
 
-.comic-button:hover {
-  background-color: #fff;
-  color: #ff5252;
-  border: 2px solid #ff5252;
-  box-shadow: 5px 5px 0px #ff5252;
-}
+            .comic-button:hover {
+            background-color: #fff;
+            color: #ff5252;
+            border: 2px solid #ff5252;
+            box-shadow: 5px 5px 0px #ff5252;
+            }
 
-.comic-button:active {
-  background-color: #fcf414;
-  box-shadow: none;
-  transform: translateY(4px);
-}
+            .comic-button:active {
+            background-color: #fcf414;
+            box-shadow: none;
+            transform: translateY(4px);
+            }
 
         </style>
 </head>
@@ -95,6 +97,7 @@
                         </select>
                     </div>
                 </div>
+                <div id="map" style = "width:415px; height:580px;"></div>
                 
             </div>
             <div class="col-md-8">
@@ -107,6 +110,7 @@
                     <div class="card-footer">
                         <input type="text" id="messageInput" class="form-control mb-3" placeholder="Type your message...">
                         <button id="sendMessageBtn" class="btn btn-primary float-end">Send</button>
+                        <button id="shareLocationBtn" class="btn btn-primary">Share Location</button>
                     </div>
                 </div>
             </div>
@@ -117,6 +121,58 @@
     <script>
         var ably = new Ably.Realtime('yRnqMQ.ksrZYQ:1d5I8PS_HO7lhsLBdMDx18oatte_GPYAbHXmfYEG_g8');
         var channel = ably.channels.get('private-messages');
+        var mapOptions = {
+            center: [33.5333312 ,-7.583331],
+            zoom: 12
+        }
+        var markerOptions = {
+            title: "MyLocation",
+            clickable: true,
+            draggable: true
+        }
+        var marker = new L.Marker([33.5333312, -7.583331], markerOptions);
+        marker.bindPopup('This is your position').openPopup();
+        var map = new L.map('map', mapOptions);
+        var layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+        marker.addTo(map);
+        map.addLayer(layer);
+
+        map.on('click', function(e) {
+            marker.setLatLng(e.latlng);
+            $('#latitudeInput').val(e.latlng.lat);
+            $('#longitudeInput').val(e.latlng.lng);
+        });
+
+        $('#shareLocationBtn').click(function() {
+        var latitude = marker.getLatLng().lat;
+        var longitude = marker.getLatLng().lng;
+        var message = 'Location: Latitude ' + latitude + ', Longitude ' + longitude;
+
+        var recipientId = $('#recipientSelect').val();
+
+        if (recipientId && message) {
+            channel.publish('messageEvent', {
+                senderName: '{{ Auth::user()->name }}',
+                recipientId: recipientId,
+                message: message,
+                senderId: '{{ Auth::user()->id }}'
+            });
+            $.ajax({
+                type: 'POST',
+                url: '{{ route("sendMessage") }}',
+                data: {
+                    recipientId: recipientId,
+                    message: message,
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(response) {},
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+            $('#messageInput').val('');
+        }
+    });
 
         $(document).ready(function() {
             function fetchOldMessages(recipientId) {
@@ -202,6 +258,7 @@
                     $('#messageInput').val('');
                 }
             });
+            
         });
     </script>
     

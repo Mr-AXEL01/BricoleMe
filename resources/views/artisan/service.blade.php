@@ -81,7 +81,7 @@
                 <span class="">damandes</span>
             </a>
             <a
-                href=""
+                href="/chatty"
                 class="text-sm font-medium text-gray-700 py-4 px-2 hover:bg-teal-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out"
             >
                 <svg
