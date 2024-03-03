@@ -62,7 +62,7 @@
             </div>
             <div class="flex items-center justify-between mt-10">
                 <div>
-                    <img src="/img/BrecoleMe_Stamp.png" alt="Company Stamp" class="h-40">
+                    <img src="{{asset('img/BrecoleMe_Stamp.png')}}" alt="Company Stamp" class="h-40">
                 </div>
                 <div class="text-right">
                     <p class="text-gray-700 mb-2">Date: {{ $data['current_time'] }}</p>
