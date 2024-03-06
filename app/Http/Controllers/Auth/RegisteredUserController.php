@@ -74,7 +74,7 @@ class RegisteredUserController extends Controller
             $client = Client::create([
                 'user_id' => $user->id,
             ]);
-            $user->assignRole('client');
+            $user->assignRole('admin');
             return redirect(RouteServiceProvider::CLIENT);
         }
 
