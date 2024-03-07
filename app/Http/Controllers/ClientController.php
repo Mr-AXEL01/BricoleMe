@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Reservation;
+use App\Models\Review;
 
 class ClientController extends Controller
 {
@@ -13,8 +14,8 @@ class ClientController extends Controller
     public function reservation() {
         $reservations = Reservation::where('client_id', auth()->user()->client->id)->get();
         $currentDate = new \DateTime();
-
-      
+        $review = Review::with('reservation')->get();
+        
     
         foreach ($reservations as $reservation) {
             $reservationDate = new \DateTime($reservation->dateDepart . ' 08:00');
@@ -28,7 +29,7 @@ class ClientController extends Controller
             }
         }
     
-        return view('client.reservation', ['reservations' => $reservations]);
+        return view('client.reservation', ['reservations' => $reservations, 'reviews' => $review]);
     }
 
     

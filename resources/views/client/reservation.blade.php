@@ -18,13 +18,15 @@
                         <div>
                             <div class="bg-white relative shadow p-2 rounded-lg text-gray-800 hover:shadow-lg">
                                 {{-- reclamation button --}}
-                                <a href=" {{ route('client.reclamation-forme', ['id' => $reserv->id]) }}"
-                                    class="right-0  rounded-l-full absolute text-center font-bold text-xs text-red-600 px-2 py-1 bg-orange-200">
-                                    <i class="fa-solid fa-circle-xmark fa-xl" style="color: #ff0000;">
-                                    </i>
-                                    <p>reclamer</p>
-
-                                </a>
+                                @if ($reserv->status == 'done')                                    
+                                    <a href=" {{ route('client.reclamation-forme', ['id' => $reserv->id]) }}"
+                                        class="right-0  rounded-l-full absolute text-center font-bold text-xs text-red-600 px-2 py-1 bg-orange-200">
+                                        <i class="fa-solid fa-circle-xmark fa-xl" style="color: #ff0000;">
+                                        </i>
+                                        <p>reclamer</p>
+                                        
+                                    </a>
+                                @endif
 
                                 {{-- devis download --}}
                                 <a href="{{ route('client.signature', ['id' => $reserv->id]) }} " class="right-0 mt-4 ">
@@ -86,12 +88,17 @@
                                             Cancel
                                         </button>
                                     </a>
-                                @elseif($reserv->status == 'done')
-                                    <a href="{{ route('client.review', ['id' => $reserv->id]) }}"> <button id="reserveBtn"
-                                            class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-4 w-full">
-                                            Review
-                                        </button>
-                                    </a>
+                                @elseif($reserv->status == 'done' && $reserv->reviewed == 0)                                            
+                                        <a href="{{ route('client.review', ['id' => $reserv->id]) }}"> <button id="reserveBtn"
+                                                class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-4 w-full">
+                                                Review
+                                            </button>
+                                        </a>
+                                @elseif ($reserv->reviewed == 1 && $reserv->status == 'done')
+                                    <button id="reserveBtn"
+                                            class="bg-blue-600  text-white font-bold py-2 px-4 rounded mt-4 w-full">
+                                            Done
+                                    </button>
                                 @else
                                     <button id="reserveBtn"
                                         class="bg-gray-200  text-black font-bold py-2 px-4 rounded mt-4 w-full">

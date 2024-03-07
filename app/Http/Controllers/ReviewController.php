@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Reservation;
 use Illuminate\Http\Request;
 use App\Models\Review;
 
@@ -15,7 +16,10 @@ class ReviewController extends Controller
         $Review->rating = $request->input('rating');
         $Review->comment = $request->input('comment');
         $Review->reservation_id = $request->input('reservationId');
-        
+
+        $reservation =  Reservation::find($Review->reservation_id);
+        $reservation->reviewed = 1;
+        $reservation->save();
 
         $Review->save();
 

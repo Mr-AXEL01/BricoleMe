@@ -147,7 +147,7 @@
                         services.forEach((service, index) => {
                             $('#container_services').append(`
                     <div class="w-full  id='${index}}' shadow overflow-hidden">
-                        <a href="/single-service/">
+                        <a href="/single-service/${service.id}">
                             <div class="max-h-[200px] overflow-hidden rounded-lg">
                                 <img src="/storage/userPics/${service.picture}" class="h-full max-h-64">
                             </div>
@@ -197,7 +197,7 @@
                         services.forEach((service, index) => {
                             $('#container_services').append(`
                     <div class="w-full  id='${index}}' shadow overflow-hidden">
-                        <a href="/single-service/">
+                        <a href="/single-service/${service.id}">
                             <div class="max-h-[200px] overflow-hidden rounded-lg">
                                 <img src="/storage/userPics/${service.picture}" class="h-full max-h-64">
                             </div>
