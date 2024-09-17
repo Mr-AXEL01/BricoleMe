@@ -4,22 +4,22 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Reservation;
+use App\Models\Review;
 
 class ClientController extends Controller
 {
     
-   
+//    ______________function pour affichage des reservation_____________
     
     public function reservation() {
-        $reservations = Reservation::all();
+        $reservations = Reservation::where('client_id', auth()->user()->client->id)->get();
         $currentDate = new \DateTime();
-
-      
+        $review = Review::with('reservation')->get();
+        
     
         foreach ($reservations as $reservation) {
             $reservationDate = new \DateTime($reservation->dateDepart . ' 08:00');
-            $reservationFinal = new \DateTime($reservation->dateFinal . ' 06:00');
-            
+            $reservationFinal = new \DateTime($reservation->dateFinal . ' 17:00');
             if ($currentDate >= $reservationDate && $currentDate <= $reservationFinal ) {
                 $reservation->status = 'doing';
             } elseif ($currentDate > $reservationDate) {
@@ -29,26 +29,20 @@ class ClientController extends Controller
             }
         }
     
-        return view('client.reservation', ['reservations' => $reservations]);
+        return view('client.reservation', ['reservations' => $reservations, 'reviews' => $review]);
     }
+
     
-    public function reclamation() {
-
-        return view('client.reclamation');
-    }
-
-    public function reclamationForme() {
-
-        return view('client.reclamationForme');
-    }
-    public function review(){
-
-        return view('client.review');
-    }
+    // ____________cancel de reservation_______________
 
     public function destroy($id) {
         $reservation = Reservation::find($id);
         $reservation->delete();
-        return redirect()->route('reservation');
+        return redirect()->route('reservation')->with('success', 'Reservation cancel successfully');
+    }
+
+    public function profile() {
+        
+        return view('client.profile');
     }
 }

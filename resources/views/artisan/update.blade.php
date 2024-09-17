@@ -30,7 +30,7 @@
           <div class="flex justify-center py-4">
               <img id='preview_img'
                   class="h-20 w-20 object-cover rounded-full shadow-lg cursor-pointer"
-                  src="{{ asset('storage/img/' . auth()->user()->picture)}}"
+                  src="{{asset('storage/userPics/' . Auth::user()->picture)}}"
                   alt="Current profile photo" />
           </div>
 

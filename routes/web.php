@@ -1,9 +1,7 @@
 <?php
 
+use App\Http\Controllers\AblyController;
 use App\Http\Controllers\ChatController;
-use App\Http\Controllers\DevisController;
-use App\Http\Controllers\ProfileController;
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DevisController;
@@ -12,6 +10,10 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ArtisanController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\GoogleSocialiteController;
+use App\Http\Controllers\ReclamationController;
+use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\ReservationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,8 +30,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::group([], function() {
-    Route::get('all-services' , [PagesController::class , 'all_services']);
-    Route::get('single-service' , [PagesController::class , 'single_service']);
+    Route::get('all-services' , [PagesController::class , 'all_services'])->name('all-services');
+
+    // _______________affichage de detaille de service dans les page d'acceuile________
+
+    Route::get('single-service/{id}' , [ServiceController::class , 'show']);
+    Route::get('services/data' , [PagesController::class , 'services_data']);
+
 });
 
 Route::get('/dashboard', function () {
@@ -43,20 +50,29 @@ Route::middleware('auth')->group(function () {
 
 
 //    ----------devis------------------
-    Route::get('/devis', [DevisController::class, 'generate']);
+    
+    Route::get('/devisSignature/{id}', [DevisController::class, 'signature'])->name('client.signature');
+    Route::post('/devis', [DevisController::class, 'generate'])->name('client.download');
 
 //    --------------chat----------------
     Route::get('/chat/{user_id}',[ChatController::class , 'chatForm'])->name('chatForm');
     Route::post('/chat/{user_id}', [ChatController::class, 'sendMessage'])->name('sendMessage');
 });
 // Admin Ressources
-Route::group([] , function () {
+Route::middleware('auth', 'role:admin', 'suspended')->group(function () {
     Route::get('/admin/dashboard' , [AdminController::class , 'dashboard']);
     Route::get('/admin/users' , [AdminController::class , 'users']);
 
+    // _______________affichage des reclamation pour admin________________
 
-    Route::get('/admin/claims' , [AdminController::class , 'claims']);
+    Route::get('/admin/claims' , [ReclamationController::class , 'reclamationAdmin'])->name('admin.claims');
 
+    // ________________accepte de reclamation___________________
+
+
+    Route::put('/admin/claimsAccept/{id}' , [ReclamationController::class , 'accepetedClaims'])->name('admin.claims-accepted');
+    Route::delete('/admin/user/{userId}/delete', [AdminController::class, 'delete'])->name('admin.users.delete');
+    Route::post('/admin/users/{userId}/suspend', [AdminController::class, 'suspendUser'])->name('admin.users.suspend');
 
 });
 
@@ -69,23 +85,21 @@ require __DIR__.'/auth.php';
 
 
 // artisan resources
-Route::group([] , function () {
-Route::get('/artisan/dashboard' , function () {
-    return view('artisan.dashboard');
-});
+Route::get('artisan/notification' , [ArtisanController::class , 'notificationArtisan'] );
+Route::post('/notify/read' , [ArtisanController::class , 'readNotification'] );
 
-Route::get('/artisan/update' , function () {
-    return view('artisan.update');
-});
-
-Route::get('/artisan/service' , function () {
-    return view('artisan.service');
-});
-
-Route::get('/artisan/edit', [ArtisanController::class, 'edit'])->name('edit-artisan');
-Route::post('/artisan/update/{id}', [ArtisanController::class, 'update'])->name('update-artisan');
-Route::get('/artisan/update', [ArtisanController::class, 'artisanRegisterData'])->name('artisan-register-data');
-
+Route::middleware(['auth', 'role:artisan', 'suspended'])->group(function () {
+    Route::get('/artisan/dashboard' , function () {
+        return view('artisan.dashboard');
+    })->name('artisan.dashboard');
+    Route::get('/artisan/update' , function () {
+        return view('artisan.update');
+    });
+    Route::get('/artisan/service', [ServiceController::class, 'index'])->name('artisan.service');
+    Route::get('/artisan/edit', [ArtisanController::class, 'edit'])->name('edit-artisan');
+    Route::post('/artisan/update/{id}', [ArtisanController::class, 'update'])->name('update-artisan');
+    Route::get('/artisan/update', [ArtisanController::class, 'artisanRegisterData'])->name('artisan-register-data');
+    Route::post('/artisan/dashboard', [ServiceController::class, 'store'])->name('services.store');
 });
 
 // Route::post('/ArtisanRegister' ,[artisan::class , 'register']);
@@ -98,11 +112,46 @@ Route::middleware(['auth'])->group(function () {
 
 // ==================================client routes================================
 
-Route::middleware(['auth', 'role:client'])->group(function () {
+Route::middleware(['auth', 'role:client', 'suspended'])->group(function () {
     Route::get('/client/reservation' , [ClientController::class , 'reservation'])->name('reservation');
-    Route::get('/client/reclamation' , [ClientController::class , 'reclamation']);
-    Route::get('/client/reclamation-forme' , [ClientController::class , 'reclamationForme']);
-    Route::get('/client/review' , [ClientController::class , 'review']);
+
+        // ___________client cancel reservarion______________
     Route::get('/client/destroy/{id}', [ClientController::class, 'destroy'])->name('client.destroy');
+
+     // ___________client cancel reservarion______________
+
+     Route::get('/client/profile' , [ClientController::class , 'profile'])->name('profile');
+    
+                // ==================reclamation controller=================
+    //  _______page des reclamation___________
+    Route::get('/client/reclamation' , [ReclamationController::class , 'reclamation'])->name('reclamation');
+
+    //  _______page de  Forme de reclamation avec id de reservation___________
+    Route::get('/client/reclamation-forme/{id}' , [ReclamationController::class , 'reclamationForme'])->name('client.reclamation-forme');
+
+    // ___________create une reclamation , insert into reaclamation___________
+    Route::post('/client/reclamer' , [ReclamationController::class , 'createReclamation'])->name('client.reclamer');
+
+                // ==================review controller=====================
+
+                 //  _______page de  Forme de review avec id de reservation___________
+    Route::get('/client/review/{id}' , [ReviewController::class , 'ReviewForme'])->name('client.review');
+
+      // ___________create une review , insert into review________________
+      Route::post('/client/review' , [ReviewController::class , 'createReiew'])->name('client.addReview');
+
+    //   ________________craection de reservation ________________
+    Route::post('/all-services' , [ReservationController::class , 'createReservation'])->name('reservation.create');
   
+});
+
+
+Route::get('/suspended', function () {
+    return view('suspended');
+})->name('suspended');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/chatty', [AblyController::class, 'chat']);
+    Route::post('/send-message', [AblyController::class, 'sendMessage'])->name('sendMessage');
+    Route::get('/getMessages/{recipientId}', [AblyController::class, 'getMessages'])->name('getMessages');
 });

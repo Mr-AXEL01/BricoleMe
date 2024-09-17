@@ -21,7 +21,11 @@
         <div class="p-4">
             <h2 class="text-xl font-semibold mb-4">Formulaire d'avis</h2>
             <!-- Formulaire de réclamation -->
-            <form action="#" method="POST">
+            <form action="{{route('client.addReview')}}" method="POST">
+                
+                @csrf
+                {{-- capter id de reservation  --}}
+                <input type="hidden" name="reservationId" value="{{$id}}">
                 <!-- Champ pour entrer la note (nombre entre 1 et 5) -->
                 <div class="mb-4">
                     <label for="rating" class="block text-sm font-medium text-gray-700 mb-2">Note (entre 1 et 5)

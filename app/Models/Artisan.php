@@ -26,7 +26,7 @@ class Artisan extends Model
    
     public function images()
     {
-        return $this->hasMany(Image::class);
+        return $this->hasMany(Image::class, 'artisan_id');
     }
 
     public function competanceArtisan()
@@ -39,8 +39,7 @@ class Artisan extends Model
     }
 
     public function metier() {
-
-        return $this->belongsToMany(Metier::class);
+        return $this->belongsToMany(Metier::class , 'metier_of_artisans');
     }
 
     public function competance() {

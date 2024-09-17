@@ -2,7 +2,7 @@
         rtl:border-r-0
         rtl:border-l  ">
     <a href="#">
-        <img class="w-auto h-10" src="{{ asset('assets/images/logo.png') }}" alt="">--}}
+        <img class="w-auto h-10" src="{{ asset('assets/images/logo.png') }}" alt="">
     </a>
 
     <div class="flex flex-col justify-between flex-1 mt-14">
@@ -57,7 +57,7 @@
                 <div class="w-full h-full p-4">
                     <div class="flex items-center justify-between">
                         <div class="flex items-center gap-1">
-                            <img src="" alt="" class="h-10 w-10
+                            <img src="{{asset('storage/userPics/' . Auth::user()->picture)}}" alt="" class="h-10 w-10
                         rounded-full">
                             <div class="">
                                 <h4 class="text-[15px]">name</h4>
@@ -78,11 +78,13 @@
                                     <i class="fa-solid fa-user text-[16px]"></i>
                                     <span class="mx-2 text-sm font-medium">Profile</span>
                                 </a>
-                                <a class="flex items-center px-3 py-2 text-gray-700 transition-colors duration-300 transform
-                                            rounded-lg  hover:bg-yellow-300 hover:text-gray-700" href="/logout">
-                                    <i class="fa-solid fa-right-from-bracket text-[16px]"></i>
-                                    <span class="mx-2 text-sm font-medium">Logout</span>
-                                </a>
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                      <button role="menuitem"
+                                          class="flex items-center text-[13px] py-1.5 px-4 text-gray-600 hover:text-[#f84525] hover:bg-gray-50 cursor-pointer">
+                                          Log Out
+                                    </button>
+                                </form>
 
                             </div>
                         </div>

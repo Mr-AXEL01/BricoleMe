@@ -36,7 +36,7 @@
 
                 <h2 class="text-2xl font-semibold text-gray-700 text-center">Bricoleme</h2>
                 <p class="text-xl text-gray-600 text-center">Welcome back !</p>
-                <a href="#" class="flex items-center justify-center mt-4 text-white rounded-lg shadow-md hover:bg-gray-100">
+                <a href="{{ url('auth/google') }}" class="flex items-center justify-center mt-4 text-white rounded-lg shadow-md hover:bg-gray-100">
                     <div class="px-4 py-3">
                         <svg class="h-6 w-6" viewBox="0 0 40 40">
                             <path
@@ -66,12 +66,12 @@
             <form method="POST" action="{{ route('login') }}">
                 @csrf
 
-                <!-- ______name________ -->
+                <!-- _________name___________ -->
                 <div class="mt-4">
                     <x-input-label for="email" :value="__('Email')"/>
                     <x-text-input id="email"
                                   class="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
-                                  type="email" name="email" :value="old('email')" required autofocus autocomplete="username"/>
+                                  type="text" name="email" :value="old('email')" required autofocus autocomplete="username"/>
                     <x-input-error :messages="$errors->get('email')" class="mt-2"/>
 
                 </div>
@@ -94,7 +94,7 @@
 
                 <div class="flex items-center justify-between mt-4">
                     @if (Route::has('password.request'))
-                        <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
+                        <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                            href="{{ route('password.request') }}">
                             {{ __('Forgot your password?') }}
                         </a>
@@ -111,12 +111,8 @@
                 </div>
             </form>
 
-    </div>
+        </div>
 
 </section>
 </body>
 </html>
-
-
-
-
